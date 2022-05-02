@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      h1{
+        text-align: center;
+      }
+      .nbaBtn{
+        text-align: center;
+        margin: auto;
+        display: flex;
+      }
+      .screen{
+        text-align: center;
+      }
+    </style>
+   
+  </head>
+  <body>
+  
+    <h1>Press button to pics of different colors</h1>
+    <button class="nbaBtn" onclick="getPics()">Get Data</button>
+    <div class="screen">
+     
+
+
+    </div>
+
+    <script>
+
+// Async
+
+// Fetch Requests  format==>  
+            // fetch('http://example.com/movies.json')
+            //   .then(response => response.json())
+            //   .then(data => console.log(data));
+
+
+
+let sc = document.querySelector('.screen');
+const getPics = () =>{
+    
+
+    fetch('https://jsonplaceholder.typicode.com/photos')
+        .then(response => response.json())
+        .then(data=> {
+
+
+          for (let i =0; i < data.length; i++){
+            console.log(data[i]);
+            console.log(data[i].url)
+            let img = document.createElement('img');
+            img.style.width ="400px";
+            img.style.height ="400px;"
+            img.src = data[i].url;
+            sc.appendChild(img);
+            
+          }
+        })
+
+
+
+        //console.log(photo)
+                //let img = document.createElement('img');
+                //img.src =JSON.stringify(photo.url)
+                //console.log(JSON.stringify(photo.url))
+                //console.log(img.src);
+
+               //console.log((printToScreen(JSON.stringify(photo.url))))
+}
+
+
+    </script>
+  </body>
+</html>
