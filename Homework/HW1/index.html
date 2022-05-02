@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Potter</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  
+
+        <h1 id = "title">Welcome Witches & Wizards</h1>
+        <div class="btns hidden">
+            <button id ="show" class="btn_style">Show Photo Gallery</button>
+            <button id="hide" class="btn_style">Hide Photo Gallery</button>
+        </div>
+        <div class="gallery">
+            <table>
+                <tr  class="rows" id = "row1">
+
+                </tr>
+
+                <tr class="rows" id = "row2">
+
+                </tr>
+
+                <tr class="rows" id ="row3">
+
+                </tr>
+
+                <tr  class="rows" id ="row4">
+
+                </tr>
+
+            </table>
+
+
+        </div>
+
+
+    <script>
+        // get refrence of h1 (animation) and the buttons.
+        let animate = document.querySelector("#title");
+        let btns = document.querySelector(".btns");
+
+        // created event listener inorder display buttons when animation is done        
+        animate.addEventListener('animationend', () => {
+            btns.classList.remove("hidden");
+
+        });
+        
+        //creating array of imgs inorder to easily access them
+        var assets = ['img/snowing.gif', 'img/trophy.jpg', 'img/water.jpg', 'img/dobby.jpg',
+                              'img/fire.jpg', 'img/hall.gif', 'img/bellatrix.jpg',
+                                    'img/lux.gif', 'img/harry.jpg',
+                                       'img/malfoy.gif'];
+
+        //getting refrence to the rows in the table inorder to add correct num of imgs
+        let row1 = document.querySelector("#row1");
+        let row2 = document.querySelector("#row2");
+        let row3 = document.querySelector("#row3");
+        let row4 = document.querySelector("#row4");
+
+        //getting refrence to buttons for onclick function
+        let show = document.querySelector("#show");
+        let hide = document.querySelector("#hide");
+
+        let gallery = document.querySelector(".gallery");
+        let rows = document.querySelectorAll("tr")
+
+       show.onclick = function(){
+            // checking to see if the td element already has pictures so if show is click again
+            //pics do not populate
+            if (row1.children.length > 0){
+                return;
+            }
+            // created for loop inorder to add the imgs from the array into the table
+            for (let i = 0; i < assets.length; i++){
+                //creating "td" and img elements
+                let temp = document.createElement('td');
+                let img = document.createElement('img');
+
+                // adding img src from the array of imgs
+                img.src = assets[i];
+
+                //appending the img in the temp (td)
+                temp.appendChild(img);
+
+                //taking the td which has the img in it and appending it to the tr element
+                if (row1.children.length < 4){
+                    row1.appendChild(temp);
+                }
+                else if (row2.children.length <3){
+                        row2.appendChild(temp);
+                }
+                else if (row3.children.length < 2){
+                    row3.appendChild(temp);
+                }
+                else{
+                    row4.appendChild(temp);
+                }
+            }
+        }
+         
+        hide.onclick = function(){
+            //clearing the data in the tr tags
+            for (let i =0; i < rows.length; i++){
+                rows[i].innerHTML = "";
+            }
+        }
+        
+
+    </script>
+</body>
+</html>
