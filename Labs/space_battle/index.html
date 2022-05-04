@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- GAMEBOARD -->
+    <h1 style="color: salmon; text-align: center">
+      Space
+      <span>
+        <img
+          src="https://media1.giphy.com/media/26BoCVdjSJOWT0Fpu/200w.gif?cid=82a1493bzimo3g2dpcqcopqb3cbcijg0swsietje4mxt4io5&rid=200w.gif&ct=g"
+          alt=""
+          class="spaceship"
+        />
+      </span>
+      Battle
+    </h1>
+    <div class="board">
+      <!-- PlayerOne -->
+      <img
+        src="https://cdna.artstation.com/p/assets/images/images/014/194/264/original/andrew-smith-ship2.gif?1542897086"
+        alt=""
+        onclick="attackAlien()"
+        class="ussr"
+      />
+
+      <!-- PlayerTwo -->
+
+      <div class="alienMob">
+        <div class="alienHolster" id="a1">
+          <img
+            src="https://www.chillchat.me/assets/Alien.gif"
+            alt=""
+            class="ufo"
+          />
+
+          <div class="counter">100</div>
+        </div>
+        <div class="alienHolster" id="a2">
+          <img
+            src="https://www.chillchat.me/assets/Alien.gif"
+            alt=""
+            class="ufo"
+          />
+
+          <div class="counter">100</div>
+        </div>
+        <div class="alienHolster" id="a3">
+          <img
+            src="https://www.chillchat.me/assets/Alien.gif"
+            alt=""
+            class="ufo"
+          />
+
+          <div class="counter">100</div>
+        </div>
+        <div class="alienHolster" id="a4">
+          <img
+            src="https://www.chillchat.me/assets/Alien.gif"
+            alt=""
+            class="ufo"
+          />
+
+          <div class="counter">100</div>
+        </div>
+        <div class="alienHolster" id="a5">
+          <img
+            src="https://www.chillchat.me/assets/Alien.gif"
+            alt=""
+            class="ufo"
+          />
+
+          <div class="counter">100</div>
+        </div>
+        <div class="alienHolster" id="a6">
+          <img
+            src="https://www.chillchat.me/assets/Alien.gif"
+            alt=""
+            class="ufo"
+          />
+
+          <div class="counter">100</div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <button onclick="showDirections()" >Player One Fight</button>
+
+    <script src="app.js"></script>
+  </body>
+</html>
