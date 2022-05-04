@@ -17,10 +17,25 @@
        #controls{
            justify-content: center;
            display: flex;
-           flex-direction: row;
        }
 
        #player_display{
+           display: flex;
+           flex-direction: row;
+           justify-content: space-between;
+       }
+       .row{
+           justify-content: center;
+       }
+      
+       .btn_key{
+           height: 50px;
+           width: 50px;
+           padding: 10px;
+           margin: 20px;
+           border-radius: 20%;           
+       }
+       #hangman_display{
            display: flex;
            flex-direction: row;
            justify-content: space-between;
@@ -65,11 +80,49 @@
             </div>
         </div>
 
-       
+        <!--Game Screen-->
+        <div id = "game_screen">
+            <h1>Hangman</h1>
+
+            
+            <div id="controls">
+                <img src="modal.png" width="55" height="45">
+                <p>Guesses Left: </p>
+            </div>
+
+            <div id="player_display">
+                <span id="p1_left">
+                    <p id ="player1_name">Jane</p>
+                    <p id = "p1_time">Time:</p>
+                </span>
+
+                <span id ="p2_right">
+                    <p id ="player2_name">Doe</p>
+                    <p id = "p2_time">Time:</p>
+                </span>
+            </div>
+
+            <div id="hangman_display">
+                <div id="word_dashes"> _ _ _ _ _ _ _ </div>
+                <canvas id="canvas" width="500" height="200" style="border:5px solid orangered;"></canvas>
+
+            </div>
+
+            <div id="keyboard">
+                <div class="row" id ="r1"></div>
+                <div class="row" id ="r2"></div>
+                <div class="row" id ="r3"></div>
+            </div>
+
+
+
+        </div>
     </div>
     
 
     <script>
+        let canvas = document.querySelector("#canvas");
+        let keyboard = document.querySelector("#keyboard");
         let start_screen = document.querySelector("#start_screen");
         let form_btn = document.querySelector("#form_btn");
         let p1_input = document.querySelector("#p1_input");
@@ -83,8 +136,46 @@
 
     
 
+function keyboard_keys (){
+    let r1 = document.querySelector("#r1");
+    let r2 = document.querySelector("#r2");
+    let r3 = document.querySelector("#r3");
+    let alphabet = "ABCDEFGHIJKLMNOPQRTSUVWXYZ"
+    let letter = alphabet.split("");
+     
+    letter.map (letter => {
+        let btn = document.createElement("button");
+        btn.classList.add("btn_key");
+        btn.innerHTML = letter;
+        btn.id = letter;
+        for (let i = 0; i < 3; i ++){
+            if (r1.children.length < 11){
+                r1.appendChild(btn);
+            }
+            else if (r2.children.length < 9){
+                r2.appendChild(btn);
+            }
+            else{
+                r3.appendChild(btn);
+            }
+        }
 
-    
+    })
+  
+}
+
+
+
+keyboard_keys();
+
+
+/*function head(){
+    let ctx = canvas.getContext("2d");
+    ctx.beginPath();
+    ctx.arc (95,50,40.0,2*Math.PI);
+    ctx.stroke();
+
+}*/
 
 
 
@@ -92,17 +183,13 @@
 
 
 
-
-
-
-
-
-
-    /*fetch('http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=true&minCorpusCount=0&minLength=5&maxLength=15&limit=1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5')
+    /*fetch('https://random-word-api.herokuapp.com/word?length=6')
             .then(response => response.json())
             .then(data=> { console.log(data);
             })*/
-
+    
+    //https://developer.wordnik.com/docs#!/words/getRandomWords
+    //https://stackoverflow.com/questions/26622708/how-to-get-random-word-using-wordnik-api-in-javascript
             //https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/video/SKD-bqAkQjhvrjayf/videoblocks-closeup-mathematical-formula-and-elements-on-blackboard-school-background-elegant-and-luxury-animation-footage-of-education-theme_rwsiewycn_thumbnail-1080_01.png
     
     </script>
