@@ -86,6 +86,7 @@
 
             
             <div id="controls">
+                <button id = "start_btn">Start</button>
                 <img src="modal.png" width="55" height="45">
                 <p>Guesses Left: </p>
             </div>
@@ -121,20 +122,61 @@
     
 
     <script>
+        let start_btn = document.querySelector("#start_btn");
         let canvas = document.querySelector("#canvas");
+        let ctx = canvas.getContext("2d");
         let keyboard = document.querySelector("#keyboard");
         let start_screen = document.querySelector("#start_screen");
         let form_btn = document.querySelector("#form_btn");
         let p1_input = document.querySelector("#p1_input");
         let p2_input = document.querySelector("#p2_input");
+        let p1_time = document.querySelector ("#p1_time");
+        let p2_time = document.querySelector ("#p2_time");
+        let word;
+        let time1 =0;
+        let time2 = 0;
+        let stop_time1;
+        let stope_time2;
+       
         form_btn.onclick = function(event){
             event.preventDefault();
             p1_input.value;
             p2_input.value;
             start_screen.classList.add("hidden");
         }
+        async function randomWord(){
+            const response = await fetch('https://random-word-api.herokuapp.com/word?length=6');
+            word = await response.json();
+           // console.log(word)
+           // return word;
 
-    
+        } 
+    randomWord();
+    start_btn.onclick = function (){
+        console.log(word);
+    }
+
+    /*function time_player1 (){
+        let p1_time = document.querySelector("#p1_time");
+        time1++;
+        p1_time.innerHTML = `Time: ${time1}`;
+    }
+
+    function time_player2 (){
+        time2++;
+        let p2_time = document.querySelector("#p2_time");
+    }*/
+
+    function time (counter, selector){
+        counter++;
+        selector.innerHTML = `Time: ${counter}`;
+
+    }
+    function stop_time (t){
+        clearInterval(t);
+    }
+
+
 
 function keyboard_keys (){
     let r1 = document.querySelector("#r1");
@@ -168,14 +210,35 @@ function keyboard_keys (){
 
 keyboard_keys();
 
+function stand (){
+    /*ctx.beginPath();
+    ctx.moveTo(100, 180);
+    ctx.lineTo(400, 180);
+    ctx.stroke();*/
+    ctx.beginPath()
+    ctx.moveTo(500,250); 
+	ctx.lineTo(500,250); 
+	ctx.moveTo(30,250); 
+	ctx.lineTo(30,70); 
+	ctx.lineTo(150,70); 
+	ctx.lineTo(150,100); 
+	ctx.stroke(); 
 
-/*function head(){
-    let ctx = canvas.getContext("2d");
+
+}
+stand();
+function head(){
     ctx.beginPath();
-    ctx.arc (95,50,40.0,2*Math.PI);
+    ctx.arc (250,50,20,0,2*Math.PI);
     ctx.stroke();
+}
+function body(){
+    ctx.beginPath();
+    ctx.arc (250,50,20,0,2*Math.PI);
+    ctx.stroke();
+}
 
-}*/
+//head();
 
 
 
