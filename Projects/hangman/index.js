@@ -17,6 +17,9 @@ let player_nameDisplay = document.querySelectorAll(".display");
 let p1_time = document.querySelector ("#p1_time");
 let p2_time = document.querySelector ("#p2_time");
 
+//displays dashes on the screen 
+let word_dashes = document.querySelector("#word_dashes");
+
 //canvas 
 let canvas = document.querySelector("#canvas");
 let ctx = canvas.getContext("2d");
@@ -25,7 +28,7 @@ let ctx = canvas.getContext("2d");
 let keyboard = document.querySelector("#keyboard");
 
 //word from api
-let word
+let word = "praise";
 
 //time counter for player 1 and 2
 let time1 = 0; 
@@ -47,23 +50,23 @@ let currPlay2=false;
 form_btn.onclick = function(event){
     event.preventDefault();
     //displays name of player 1 and 2 on opposite sides of the screen
-    player_nameDisplay[0].innerHTML = `${form.children[0].value}`
-    player_nameDisplay[1].innerHTML = `${form.children[1].value}`
-    
+    player_nameDisplay[0].innerHTML = `${form.children[0].value}`;
+    player_nameDisplay[1].innerHTML = `${form.children[1].value}`;
     start_screen.classList.add("hidden");
     game_screen.classList.remove("hidden");
- 
 }
 
 //fetch request to get random word
-async function randomWord(){
+/*async function randomWord(){
     const response = await fetch('https://random-word-api.herokuapp.com/word?length=6');
     word = await response.json();
 } 
 //if player one guesses a correct letter they continue on to guess until they get it wrong
-randomWord();
+randomWord();*/
+
 start_btn.onclick = function (){
     console.log("word",word)
+    word = word.toUpperCase();
 
     //glows player 1 name to indicate player 1 turn
     player_nameDisplay[0].classList.add("glow");
@@ -78,11 +81,13 @@ start_btn.onclick = function (){
     for (let i = 0; i < keys.length; i++){
             keys[i].onclick = function (event){
                 p1_totalTime += time1;
-                stop_time(stop_time1);
+                //stop_time(stop_time1); --> stop time if letter guessed is wrong
 
-                if (currPlay1 == false){
-                    currPlay1 = event.target.id
+                currPlay1 = true;
+                if (currPlay1 == true){
+                    letterMatch(word, event.target.id);
                 }
+               
                 //else if (currPlay1 == false and currPlay2 != event.target.id ){
                     
                 //}
@@ -93,11 +98,21 @@ start_btn.onclick = function (){
 
 }
 
+function letterMatch(random_word,event) {
+    let word_array = random_word.split("");
+    for (let i = 0; i < word_array.length; i ++){
+        if (word_array[i] === event){
+            let p = document.createElement("p");
+            p.innerHTML = event
+            word_dashes.children[i].replaceWith(p);
+        }
+    }
+}
+
 
 
 function dashes (){
     for (let i = 0; i < 6; i++){
-    let word_dashes = document.querySelector("#word_dashes");
     let hr = document.createElement("hr");
     hr.classList.add("dashed_line");
     //p.innerHTML = "-";
