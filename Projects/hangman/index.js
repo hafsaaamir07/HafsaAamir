@@ -29,10 +29,10 @@ let ctx = canvas.getContext("2d");
 let keyboard = document.querySelector("#keyboard");
 
 //word from api
-//let word = "apples";
 let word;
 let letters = "";
 let word_array;
+
 //time counter for player 1 and 2
 let time1 = 0; 
 let time2 = 0;
@@ -45,8 +45,8 @@ let stop_time1;
 let stop_time2;
 
 //tracking who is currently playing
-let currPlay1=false;
-let currPlay2=false;
+let currPlay1 = 1;
+
 
 
 //when form is submit start screen is hidden and game screen is on
@@ -81,9 +81,10 @@ start_btn.onclick = function (){
         time1++
     },1000)
 
-    currPlay1 = true;
+    currPlay = 1;
     let keys = document.querySelectorAll(".btn_key");
     console.log(keys);
+
     for (let i = 0; i < keys.length; i++){
         keys[i].addEventListener ("click", play )
     }
@@ -93,135 +94,39 @@ start_btn.onclick = function (){
 
 function play(event){
     console.log (event.target)
-    if (currPlay1){
-        let match = letterMatch(event.target.id)
-        console.log(match);
-        if (match === 0){
-            currPlay2 = false;
-        }
-        else{// this means a match is 0 so letter does not match and we need to switch players
+
+    // true if match, false if not a match
+    let match = letterMatch (event.target.id)
+
+    //if there is not a match, then we switch players
+    if (!match){
+
+        //if players 1 letter click not in word, switch to player 2
+        if (currPlay === 1){
+
+            currPlay = 2
+            switchPlayer(player_nameDisplay[0], player_nameDisplay[1], stop_time1)
             stop_time2 = setInterval (()=> {
                 time(time2,p2_time)
                 time2++
             },1000)
-            currPlay2 = true;
-            switchPlayer (player_nameDisplay[0],player_nameDisplay[1],stop_time1)
-            match = letterMatch(event.target.id)
-            if (match === 0){
-                currPlay1 = false;
-            }
-            else{
-                currPlay1 = true;
-            }
+        }
+
+        // if player 2 letter click not in word switch player
+        else{
+            currPlay = 1
+            switchPlayer(player_nameDisplay[1], player_nameDisplay[0], stop_time2)
+            stop_time1 = setInterval (()=> {
+                time(time1,p1_time)
+                time1++
+            },1000)
 
         }
     }
 
 }
-
-
-
-
-
-
-
-       /* if (currPlay1){ 
-            let match = letterMatch(event.target.id)
-            if (match === 0){ //letter was found in word
-                currPlay2 = false;
-            }
-            else{
-
-                console.log("first else")
-                currPlay2 = true;
-                if (curr)
-                currPlay1 = false
-                console.log(match);
-                switchPlayer(player_nameDisplay[0],player_nameDisplay[1],stop_time1)
-                stop_time2 = setInterval (()=> {
-                    time(time2,p2_time)
-                    time2++
-                },1000)
-                match = letterMatch(event.target.id)
-                if (match === 0){
-                    currPlay1 = false
-                }
-                else{
-                    console.log("last else")
-                    currPlay1 = true;
-                    switchPlayer(player_nameDisplay[1],player_nameDisplay[0],stop_time2)
-                }
-            }
-        }*/
+        
     
-        /* if (currPlay1){
-            let match = letterMatch(event.target.id)
-            console.log(match);
-            if (match == 0){
-                currPlay2 = false;
-            }
-        }
-        currPlay2 = true;
-        else{
-            if (currPlay2){
-                letterMatch(event.target.id);
-                currPlay1 = false;
-                switchPlayer(player_nameDisplay[0],player_nameDisplay[1],stop_time1)
-                stop_time2 = setInterval (()=> {
-                    time(time2,p2_time)
-                    time2++
-                },1000)
-            }
-            else{
-                currPlay1 = true
-                switchPlayer(player_nameDisplay[1],player_nameDisplay[0],stop_time2)
-
-            }
-        }*/
-        /*PLAYER 1 */
-            //if there is a letter match 
-            //player 1 continues
-            //give them glow class
-            //chnage keyboard key text color for player 1
-            //remove glow class from player 2
-            //stop player 2 timer
-            // currplay2 is false
-
-        /*PLAYER 2 */
-            //lettermatch
-            // if there is a letter match 
-            //player 2 contnues 
-            //give player 2 glow class
-            //change keyboard color text for player 2
-            //remove glow class from player 1
-            //stop player 1 timer
-            //currPlay1 is false
-
-
-
-        /*Game Logic 
-            1) player one clicks start button on game screen
-            2) once start button is clicked player ones timer starts
-                --> when player 1 clicks a letter and the letter is in
-                    the word player 1 continues to play and the timer continues
-                --> if the letter they click is not in the word their timer stops
-                and its player 2 turn
-            3)As soon as player 1 turns over player 2 turn starts and player 2 timer
-                --> player two goes and clicks a letter if letter in word they continue
-                to play and their timer continues. 
-                --> if letter clicked not in word then timer stops and its player1
-                    turn
-            4) this continues until one player continously guesses letter correct 
-            and if they continously guess the letter correct and guess the whole word
-            they win and game ends
-            5)when game ends they are given the option to restart
-        */
-
-
-
-
-
-
 //takes in player 1 and 2 display, also takes in time of player that answered wrong 
 function switchPlayer(curr1_display, curr2_display,time){ 
         curr1_display.classList.remove("glow");
@@ -238,12 +143,7 @@ function letterMatch(event) {
             word_dashes.children[i].replaceWith(p);
         }
     }
-    if (temp){
-        return 0;
-    }
-    else{
-        return 1;
-    }
+    return temp;
 }
 
 
@@ -338,15 +238,71 @@ function leftLeg(){
  }
 
 
+/*PLAYER 1 */
+            //if there is a letter match 
+            //player 1 continues
+            //give them glow class
+            //chnage keyboard key text color for player 1
+            //remove glow class from player 2
+            //stop player 2 timer
+            // currplay2 is false
+
+        /*PLAYER 2 */
+            //lettermatch
+            // if there is a letter match 
+            //player 2 contnues 
+            //give player 2 glow class
+            //change keyboard color text for player 2
+            //remove glow class from player 1
+            //stop player 1 timer
+            //currPlay1 is false
 
 
-/*fetch('https://random-word-api.herokuapp.com/word?length=6')
-    .then(response => response.json())
-    .then(data=> { console.log(data);
-    })*/
 
-//https://developer.wordnik.com/docs#!/words/getRandomWords
-//https://stackoverflow.com/questions/26622708/how-to-get-random-word-using-wordnik-api-in-javascript
-    //https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/video/SKD-bqAkQjhvrjayf/videoblocks-closeup-mathematical-formula-and-elements-on-blackboard-school-background-elegant-and-luxury-animation-footage-of-education-theme_rwsiewycn_thumbnail-1080_01.png
+        /*Game Logic 
+            1) player one clicks start button on game screen
+            2) once start button is clicked player ones timer starts
+                --> when player 1 clicks a letter and the letter is in
+                    the word player 1 continues to play and the timer continues
+                --> if the letter they click is not in the word their timer stops
+                and its player 2 turn
+            3)As soon as player 1 turns over player 2 turn starts and player 2 timer
+                --> player two goes and clicks a letter if letter in word they continue
+                to play and their timer continues. 
+                --> if letter clicked not in word then timer stops and its player1
+                    turn
+            4) this continues until one player continously guesses letter correct 
+            and if they continously guess the letter correct and guess the whole word
+            they win and game ends
+            5)when game ends they are given the option to restart
+        */
 
+        /*
 
+if (currPlay1){
+        let match = letterMatch(event.target.id)
+        console.log(match);
+        if (match === 0){
+            currPlay2 = false;
+        }
+        else{// this means a match is 0 so letter does not match and we need to switch players
+            stop_time2 = setInterval (()=> {
+                time(time2,p2_time)
+                time2++
+            },1000)
+            currPlay2 = true;
+            switchPlayer (player_nameDisplay[0],player_nameDisplay[1],stop_time1)
+            match = letterMatch(event.target.id)
+            if (match === 0){
+                currPlay1 = false;
+            }
+            else{
+                currPlay1 = true;
+                currPlay2 = false;
+                switchPlayer (player_nameDisplay[1],player_nameDisplay[0],stop_time2)
+            }
+
+        }
+    }
+
+*/
