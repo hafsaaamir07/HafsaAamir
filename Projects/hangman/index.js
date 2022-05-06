@@ -12,6 +12,8 @@ let game_screen = document.querySelector("#game_screen");
 let start_btn = document.querySelector("#start_btn");
 let guesses = document.querySelector("#guesses");
 
+let lives = 6;
+
 //left and right side of the screen that displays p1 and p2 name + time
 let player_nameDisplay = document.querySelectorAll(".display");
 
@@ -30,22 +32,21 @@ let keyboard = document.querySelector("#keyboard");
 
 //word from api
 let word;
-let letters = "";
+let correct_letters = [];
 let word_array;
 
 //time counter for player 1 and 2
 let time1 = 0; 
 let time2 = 0;
+let best_time = [];
 
-let p1_totalTime = 0;
-let p2_totalTime = 0;
 
 //for clearInterval
 let stop_time1;
 let stop_time2;
 
 //tracking who is currently playing
-let currPlay1 = 1;
+let currPlay;
 
 
 
@@ -83,7 +84,6 @@ start_btn.onclick = function (){
 
     currPlay = 1;
     let keys = document.querySelectorAll(".btn_key");
-    console.log(keys);
 
     for (let i = 0; i < keys.length; i++){
         keys[i].addEventListener ("click", play )
@@ -93,17 +93,23 @@ start_btn.onclick = function (){
 
 
 function play(event){
-    console.log (event.target)
-
     // true if match, false if not a match
     let match = letterMatch (event.target.id)
+    if (correct_letters.join("") == word){
+        console.log(currPlay)
+        alert(`player ${currPlay-1} is the winner`);
+        best(player_nameDisplay[currPlay-1].innerHTML,time1);
+
+    }
 
     //if there is not a match, then we switch players
     if (!match){
-
+        lives --;
+        guesses.innerHTML = `Guesses Left: ${lives}`
+        
         //if players 1 letter click not in word, switch to player 2
         if (currPlay === 1){
-
+            console.log("first if", currPlay);
             currPlay = 2
             switchPlayer(player_nameDisplay[0], player_nameDisplay[1], stop_time1)
             stop_time2 = setInterval (()=> {
@@ -115,6 +121,7 @@ function play(event){
         // if player 2 letter click not in word switch player
         else{
             currPlay = 1
+            console.log("else", currPlay);
             switchPlayer(player_nameDisplay[1], player_nameDisplay[0], stop_time2)
             stop_time1 = setInterval (()=> {
                 time(time1,p1_time)
@@ -125,7 +132,17 @@ function play(event){
     }
 
 }
-        
+  
+function best (nm, tm){
+    let objects = {};
+    objects.name = nm;
+    objects.time = tm;
+    best_time.push(objects);
+    //would be [{name: nm, time: tm}]
+    let json = JSON.stringify(best_time)
+    console.log(json);
+    window.localStorage.setItem("leaderboard",json);
+}
     
 //takes in player 1 and 2 display, also takes in time of player that answered wrong 
 function switchPlayer(curr1_display, curr2_display,time){ 
@@ -140,6 +157,7 @@ function letterMatch(event) {
             temp = true;
             let p = document.createElement("p");
             p.innerHTML = event;
+            correct_letters[i] = event;
             word_dashes.children[i].replaceWith(p);
         }
     }
@@ -162,6 +180,7 @@ dashes();
 //function that updates time on screen and counter
 function time (counter, selector){
     counter++;
+    
     selector.innerHTML = `Time: ${counter}`;
 }
 
@@ -195,6 +214,8 @@ function keyboard_keys (){
     })
 }
 keyboard_keys();
+
+
 
 function stand (){
     /*ctx.beginPath();
