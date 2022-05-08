@@ -1,0 +1,104 @@
+@font-face{
+    font-family: neat_chalk;
+    src: url(neat_chalk.ttf);
+    
+}
+@font-face{
+    font-family: very_simple;
+    src: url(very_simple.ttf);
+    
+}
+body{
+    background-image: url('Morton.jpg');
+    background-size: cover;
+}
+h1{
+    text-align: center;
+    font-family: neat_chalk;
+    margin-top: 40px;
+    font-weight: 550;
+    color: #ece5a0;
+}
+li{
+    font-family: very_simple;
+    font-size: 25px;
+    color: #cfaa75;
+}
+input[type="text"], textarea {
+    background-color : #d1d1d1; 
+
+}
+#player_submit{
+    text-align: center;
+    font-family: very_simple;
+    margin-top: -25px;
+    font-size: 25px;
+    color: paleturquoise;
+}
+
+.hidden{
+   display: none;
+}
+#controls{
+   justify-content: center;
+   display: flex;
+}
+
+#player_display{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+.row{
+   justify-content: center;
+}
+
+.btn_key{
+   height: 50px;
+   width: 50px;
+   padding: 10px;
+   margin: 20px;
+   border-radius: 20%;           
+}
+.btn_key:hover{
+   height: 50px;
+   width: 50px;
+   padding: 10px;
+   margin: 20px;
+   border-radius: 20%;     
+   background-color: lightgreen;      
+}
+#hangman_display{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+#word_dashes{
+   display: flex;
+   width: 800px;
+   border: solid 5px green;
+   height: 250px;
+   justify-content: space-evenly;
+   margin-top: 150px;
+}
+.dashed_line{
+   width: 50px;
+   display: flex;
+   margin-top: 15%;
+}
+.glow {
+font-size: 20px;
+color: #fff;
+text-align: center;
+animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+}
+
+to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+}
+}
