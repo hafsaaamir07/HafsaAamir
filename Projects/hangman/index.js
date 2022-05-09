@@ -65,7 +65,6 @@ async function randomWord(){
     const response = await fetch('https://random-word-api.herokuapp.com/word?length=6');
     word = await response.json();
 } 
-//if player one guesses a correct letter they continue on to guess until they get it wrong
 randomWord();
 
 start_btn.onclick = function (){
@@ -88,7 +87,6 @@ start_btn.onclick = function (){
     for (let i = 0; i < keys.length; i++){
         keys[i].addEventListener ("click", play )
     }
-
 }
 
 
@@ -99,7 +97,6 @@ function play(event){
         console.log(currPlay)
         alert(`player ${currPlay-1} is the winner`);
         best(player_nameDisplay[currPlay-1].innerHTML,time1);
-
     }
 
     //if there is not a match, then we switch players
@@ -109,9 +106,8 @@ function play(event){
         
         //if players 1 letter click not in word, switch to player 2
         if (currPlay === 1){
-            console.log("first if", currPlay);
             currPlay = 2
-            switchPlayer(player_nameDisplay[0], player_nameDisplay[1], stop_time1)
+            switchPlayer(player_nameDisplay[0], player_nameDisplay[1], stop_time1,"#A6D7C8")
             stop_time2 = setInterval (()=> {
                 time(time2,p2_time)
                 time2++
@@ -121,18 +117,17 @@ function play(event){
         // if player 2 letter click not in word switch player
         else{
             currPlay = 1
-            console.log("else", currPlay);
-            switchPlayer(player_nameDisplay[1], player_nameDisplay[0], stop_time2)
+            switchPlayer(player_nameDisplay[1], player_nameDisplay[0], stop_time2,"#799FCB")
             stop_time1 = setInterval (()=> {
                 time(time1,p1_time)
                 time1++
             },1000)
-
         }
     }
 
 }
-  
+
+
 function best (nm, tm){
     let objects = {};
     objects.name = nm;
@@ -145,17 +140,23 @@ function best (nm, tm){
 }
     
 //takes in player 1 and 2 display, also takes in time of player that answered wrong 
-function switchPlayer(curr1_display, curr2_display,time){ 
+function switchPlayer(curr1_display, curr2_display,time,c){ 
         curr1_display.classList.remove("glow");
         curr2_display.classList.add("glow");
         stop_time(time);
+        let btn_key = document.querySelectorAll(".btn_key");
+        for (let i = 0; i < btn_key.length; i ++){
+            btn_key[i].style.color = c;
+        }
 }
+
 function letterMatch(event) {
     temp = false;
     for (let i = 0; i < word_array.length; i ++){
         if (word_array[i] === event){
             temp = true;
             let p = document.createElement("p");
+            p.classList.add("replace")
             p.innerHTML = event;
             correct_letters[i] = event;
             word_dashes.children[i].replaceWith(p);
@@ -170,9 +171,7 @@ function dashes (){
     for (let i = 0; i < 6; i++){
     let hr = document.createElement("hr");
     hr.classList.add("dashed_line");
-    //p.innerHTML = "-";
     word_dashes.appendChild(hr);
-
     }
 }
 dashes();
@@ -215,8 +214,6 @@ function keyboard_keys (){
 }
 keyboard_keys();
 
-
-
 function stand (){
     /*ctx.beginPath();
     ctx.moveTo(100, 180);
@@ -254,9 +251,9 @@ function rightArm (){
 function leftLeg(){
 
 }
- function rightLeg(){
+function rightLeg(){
 
- }
+}
 
 
 /*PLAYER 1 */
