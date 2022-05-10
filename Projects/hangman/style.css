@@ -1,24 +1,24 @@
 @font-face{
     font-family: neat_chalk;
-    src: url(neat_chalk.ttf);
+    src: url(fonts/neat_chalk.ttf);
     
 }
 @font-face{
     font-family: very_simple;
-    src: url(very_simple.ttf);
+    src: url(fonts/very_simple.ttf);
     
 }
 @font-face{
     font-family: dust;
-    src: url(dust.ttf);
+    src: url(fonts/dust.ttf);
 }
 @font-face{
     font-family: board;
-    src: url(board.ttf);
+    src: url(fonts/board.ttf);
 }
 @font-face{
     font-family: midnight;
-    src: url(midnight.otf);
+    src: url(fonts/midnight.otf);
 }
 body{
     background-image: url('Morton.jpg');
@@ -70,6 +70,12 @@ img{
     margin-right: 20px;
     height: 50px;
     width: 50px;
+}
+#exampleModalLongTitle{
+    font-family: neat_chalk;
+}
+.modal-body ol li {
+    color:#679A7D;
 }
 .hidden{
    display: none;
