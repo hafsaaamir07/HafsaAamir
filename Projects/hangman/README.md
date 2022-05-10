@@ -22,17 +22,17 @@ Game Functionality:
   - game over screen: 
         a) first game over screen is for if one of the player guesses the word correct and their name and time is shown on the leaderboard
         b) second game over screen is if the players are unable to guess the word and at the end the word is displayed.
-    - function time takes the arguemnts of the time varaible of current player and the queryslected div that displays the time of that player
-    - function stop_time stops the timer using clearInterval
-    - function keyboard_keys returns alphabet buttons to the screen that remseble the keyboard
-        a) has a varible called alpahbet that is a string of the alphabet in uppercase joined with no space
+- function time takes the arguemnts of the time varaible of current player and the queryslected div that displays the time of that player
+- function stop_time stops the timer using clearInterval
+- function keyboard_keys returns alphabet buttons to the screen that remseble the keyboard
+	a) has a varible called alpahbet that is a string of the alphabet in uppercase joined with no space
         b) I split the varaible alpahbet using .split("") and store the value that is returned in an varible called letter bc the value returned is an array that has each of the letters.
         c) I use map to go throughthe array and create a button for each element and give it a class of btn_key that styles the buttons.
         d) I use the letter key word in the map function to make the innerHTML of each button the value of the string in the array letter.
         e) Ia append each button to the keyboard div in the html file
-    - function hangman has a switch case that draws each hangman body part based on the the number of guesses left.
-        a) In the last switch case (0) I call the function game_end because the last case indicates that there are no more guesses left
-    - function game_end rests all the values of the game_screen so the game can be played again
+- function hangman has a switch case that draws each hangman body part based on the the number of guesses left.
+	a) In the last switch case (0) I call the function game_end because the last case indicates that there are no more guesses left
+- function game_end rests all the values of the game_screen so the game can be played again
 
 1) Inorder to go from the start screen to game screen I attach an onclick to the start button in the start screen where the player submit their names
 	- once the start button is clicked i use preventDefault to prevent the page from reloading because the name input is a form in the start screen.
