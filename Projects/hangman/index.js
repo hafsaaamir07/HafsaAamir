@@ -29,6 +29,7 @@ let ctx = canvas.getContext("2d");
 
 //has letter buttons
 let keyboard = document.querySelector("#keyboard");
+let rows = document.querySelectorAll(".row");
 
 //word from api
 let word;
@@ -61,6 +62,7 @@ let correct_word = document.querySelector("#correct_word");
 
 
 
+
 document.addEventListener("DOMContentLoaded", function(){
     let img = document.querySelector(".img");
     let close = document.querySelector(".close");
@@ -84,6 +86,7 @@ form_btn.onclick = function(event){
     start_screen.classList.add("hidden");
     game_screen.classList.remove("hidden");
     stand();
+    keyboard_keys();
     dashes();
 }
 
@@ -123,6 +126,8 @@ start_btn.onclick = function (){
 function play(event){
     // true if match, false if not a match
     let match = letterMatch (event.target.id)
+    event.target.style.pointerEvents = "none";
+    event.target.style.backgroundColor = "#FFE3E3";//"#CBF9D9";
     if (correct_letters.join("") == word){
         console.log(currPlay)
         if (currPlay == 1){
@@ -131,7 +136,7 @@ function play(event){
         else{
             best(player_nameDisplay[currPlay-1].innerHTML,time2);
         }
-        setTimeout(game_end,550);
+        setTimeout(game_end,650);
     }
 
     //if there is not a match, then we switch players
@@ -187,7 +192,7 @@ function best (nm, tm){
     // 3 -> best2
     // 4 -> best3
 
-    game_over.children[1].innerHTML = `Your time: ${tm}`
+    game_over.children[1].innerHTML = `${nm}'s current time: ${tm}`
     //best time 1
     game_over.children[2].innerHTML = `#1 Best time: ${best_time[0].time} -- ${best_time[0].name}`;
     
@@ -228,25 +233,12 @@ function letterMatch(event) {
 }
 
 
-
 function dashes (){
     for (let i = 0; i < 6; i++){
     let hr = document.createElement("hr");
     hr.classList.add("dashed_line");
     word_dashes.appendChild(hr);
     }
-}
-
-//function that updates time on screen and counter
-function time (counter, selector){
-    counter++;
-    
-    selector.innerHTML = `Time: ${counter}`;
-}
-
-//to clearInterval
-function stop_time (t){
-    clearInterval(t);
 }
 
 function keyboard_keys (){
@@ -271,7 +263,18 @@ function keyboard_keys (){
         }
     })
 }
-keyboard_keys();
+
+
+//function that updates time on screen and counter
+function time (counter, selector){
+    counter++;
+    selector.innerHTML = `Time: ${counter}`;
+}
+
+//to clearInterval
+function stop_time (t){
+    clearInterval(t);
+}
 
 function stand (){
     ctx.beginPath();
@@ -313,13 +316,11 @@ function body(){
     ctx.stroke()
 }
 
-
 function leftArm(){
     ctx.beginPath();
     ctx.moveTo(180,120)
     ctx.lineTo(145,130)
     ctx.stroke()
-
 }
 
 function rightArm (){
@@ -341,7 +342,6 @@ function rightLeg(){
     ctx.moveTo(180,170)
     ctx.lineTo(210,181)
     ctx.stroke()
-
 }
 
 function hangMan (){
@@ -365,8 +365,9 @@ function hangMan (){
             leftLeg();
             console.log("this is word: ",word)
             correct_word.classList.remove("hidden");
+            add_hidden();
             correct_word.innerHTML = `Your word was... ${word}`;
-            setTimeout(game_end,550);
+            setTimeout(game_end,650);
             break;
     }
 }
@@ -393,78 +394,26 @@ function game_end (){
 play_again.onclick = function(){
     game_over.classList.add("hidden");
     start_screen.classList.remove("hidden");
+    game_over.children[2] ="";
     game_over.children[3] ="";
     game_over.children[4] ="";
-    game_over.children[5] ="";
+    remove_hidden();
     correct_word.classList.add("hidden")
     word_dashes.innerHTML="";
+    for (let i =0; i < rows.length; i++){
+        rows[i].innerHTML = "";
+    }
     randomWord();
 }
-/*PLAYER 1 */
-            //if there is a letter match 
-            //player 1 continues
-            //give them glow class
-            //chnage keyboard key text color for player 1
-            //remove glow class from player 2
-            //stop player 2 timer
-            // currplay2 is false
-
-        /*PLAYER 2 */
-            //lettermatch
-            // if there is a letter match 
-            //player 2 contnues 
-            //give player 2 glow class
-            //change keyboard color text for player 2
-            //remove glow class from player 1
-            //stop player 1 timer
-            //currPlay1 is false
-
-
-
-        /*Game Logic 
-            1) player one clicks start button on game screen
-            2) once start button is clicked player ones timer starts
-                --> when player 1 clicks a letter and the letter is in
-                    the word player 1 continues to play and the timer continues
-                --> if the letter they click is not in the word their timer stops
-                and its player 2 turn
-            3)As soon as player 1 turns over player 2 turn starts and player 2 timer
-                --> player two goes and clicks a letter if letter in word they continue
-                to play and their timer continues. 
-                --> if letter clicked not in word then timer stops and its player1
-                    turn
-            4) this continues until one player continously guesses letter correct 
-            and if they continously guess the letter correct and guess the whole word
-            they win and game ends
-            5)when game ends they are given the option to restart
-        */
-
-        /*
-
-if (currPlay1){
-        let match = letterMatch(event.target.id)
-        console.log(match);
-        if (match === 0){
-            currPlay2 = false;
-        }
-        else{// this means a match is 0 so letter does not match and we need to switch players
-            stop_time2 = setInterval (()=> {
-                time(time2,p2_time)
-                time2++
-            },1000)
-            currPlay2 = true;
-            switchPlayer (player_nameDisplay[0],player_nameDisplay[1],stop_time1)
-            match = letterMatch(event.target.id)
-            if (match === 0){
-                currPlay1 = false;
-            }
-            else{
-                currPlay1 = true;
-                currPlay2 = false;
-                switchPlayer (player_nameDisplay[1],player_nameDisplay[0],stop_time2)
-            }
-
-        }
-    }
-
-*/
+function add_hidden(){
+    game_over.children[1].classList.add("hidden")
+    game_over.children[2].classList.add("hidden");
+    game_over.children[3].classList.add("hidden");
+    game_over.children[4].classList.add("hidden");
+}
+function remove_hidden(){
+    game_over.children[1].classList.remove("hidden")
+    game_over.children[2].classList.remove("hidden");
+    game_over.children[3].classList.remove("hidden");
+    game_over.children[4].classList.remove("hidden");
+}
