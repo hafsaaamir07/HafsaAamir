@@ -1,6 +1,6 @@
 
-Two PLayer Hangman
-/*******Game Logic********/
+                                                                          Two PLayer Hangman
+Game Logic:
 1) The start screen is shown where player 1 and 2 input their names
 2) Once the start button is clicked the game screen is shown
 3) On the game screen before starting the player can take a look and once familiarized with the set-up player one clicks the start game button
