@@ -61,5 +61,9 @@ Game Functionality:
         1) The switch player removes the glwo glass from the current player and adds it to the other player. It also stops the current players time and adds the other players name font color to the keyboard (another way of indicating what players turn it is).
     e) Depending on the value of what currPlay is in the if statement for letterMatch I change the value of currPlay to the other player and also start their timer.
 
+Citations:
+1) for css glow key frames I used w3 schools template and adjusted it to my liking
+2) for modal I used bootstrap and adjusted the code
+
 
 
