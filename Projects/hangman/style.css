@@ -12,6 +12,14 @@
     font-family: dust;
     src: url(dust.ttf);
 }
+@font-face{
+    font-family: board;
+    src: url(board.ttf);
+}
+@font-face{
+    font-family: midnight;
+    src: url(midnight.otf);
+}
 body{
     background-image: url('Morton.jpg');
     background-size: cover;
@@ -75,7 +83,7 @@ img{
    flex-direction: row;
    justify-content: space-between;
    font-family: dust;
-   font-size: 40px;
+   font-size: 50px;
    font-weight: 590;
 }
 #p1_left, #p2_right{
@@ -92,7 +100,7 @@ img{
 }
 #player2_display{
     margin-right: 45px;
-    color: #A6D7C8;
+    color: #87BDA4;
 }
 #p2_time{
     margin-right: 100px;
@@ -103,24 +111,30 @@ img{
     flex-direction: row;
     justify-content: space-between;
  }
+ canvas{
+     margin-right: 150px;
+ }
  #word_dashes{
     display: flex;
     width: 800px;
-    border: solid 5px green;
     height: 250px;
     justify-content: space-evenly;
     margin-top: 50px;
+    margin-left: 150px;
  }
  .dashed_line{
-    width: 50px;
+    width: 100px;
+    height: 500px;
     display: flex;
     margin-top: 15%;
+    border: 3px solid #58CFEE;
  }
  .replace{
      display: flex;
      margin-top: 10%;
      color: white;
-     font-size: 50px;
+     font-size: 60px;
+     font-family: board;
  }
 .row{
    justify-content: center;
@@ -149,17 +163,50 @@ img{
     background-color: #F7D7C4;    
 }
 .glow {
-    color: #fff;
+    color: #FFEFB0;
     text-align: center;
     animation: glow 1s ease-in-out infinite alternate;
 }
 
 @-webkit-keyframes glow {
     from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+        text-shadow: 0 0 10px #FFEFB0, 0 0 20px #FFEFB0, 0 0 30px #F1D97D, 0 0 40px #F1D97D, 0 0 50px #F1D97D, 0 0 60px #F1D97D, 0 0 70px #F1D97D;
     }
 
     to {
-        text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+        text-shadow: 0 0 20px #FFEFB0, 0 0 30px #F8E8AC, 0 0 40px #F8E8AC, 0 0 50px #F8E8AC, 0 0 60px #F8E8AC, 0 0 70px #F8E8AC, 0 0 80px #F8E8AC;
     }
+}
+
+#curr_time{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 20px;
+    font-family: midnight;
+    color: #8CD1F6;
+}
+#bestTime1, #bestTime2, #bestTime3{
+    font-size: 50px;
+    color: white;
+    font-family: midnight;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#correct_word{
+    text-align: center;
+    font-size: 50px;
+    margin-top: 50px;
+    font-family: very_simple;
+    color: #95FFF7;
+}
+#play_again{
+    font-family: very_simple;
+    font-size: 22px;
+    margin-left: 47%;
+    border-radius: 15%;
+    width: 120px;
+    color: palevioletred;
+    background-color: #FCF8E8;
 }
