@@ -56,7 +56,7 @@ input[type="text"], textarea {
     color: #FFEDB8;
 }
 #start_btn{
-    width: 60px;
+    width: 100px;
     height: 30px;
     border-radius: 15%;
     font-family: very_simple;
@@ -186,7 +186,7 @@ img{
 
 #curr_time{
     color: white;
-    font-size: 30px;
+    font-size: 35px;
     text-align: center;
     margin-top: 20px;
     font-family: midnight;
