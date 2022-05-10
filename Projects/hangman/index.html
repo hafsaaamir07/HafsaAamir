@@ -46,12 +46,29 @@
 
         <!--Game Screen-->
         <div id = "game_screen" class="hidden">
-            <h1>Hangman</h1>
-
-            
+            <h1 style="color:#C9C1E7;">Hangman</h1>
             <div id="controls">
                 <button id = "start_btn">Start</button>
-                <img src="modal.png" width="55" height="45">
+                <!--Image trigger modal-->
+                <img src="icon.png" class="img" data-toggle="modal" data-target="#exampleModalCenter">
+
+                 <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        JHDSJKHDJSKHDJKSAHDJKSAHDJKSAKJDHSAJKH
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
                 <p id ="guesses">Guesses Left: 6</p>
             </div>
 
@@ -69,7 +86,7 @@
 
             <div id="hangman_display">
                 <div id="word_dashes"></div>
-                <canvas id="canvas" width="800" height="200" style="border:5px solid orangered;"></canvas>
+                <canvas id="canvas" width="600" height="250" style="border:5px dashed #FED1C4;"></canvas>
             </div>
 
             <div id="keyboard">
@@ -77,10 +94,35 @@
                 <div class="row" id ="r2"></div>
                 <div class="row" id ="r3"></div>
             </div>
-
-
-
         </div>
+        <!--Game Over Screen-->
+        <div id = "game_over" class="hidden">
+            <h1>Game Over</h1>
+            <div id = "curr_time"></div>
+            <div id = "bestTime1"></div>
+            <div id = "bestTime2"></div>
+            <div id = "bestTime3"></div>
+            <p id = "correct_word" class="hidden"></p>
+            <button id = "play_again">Play Again</button>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
     <script src="index.js"></script>
     <!-- JavaScript Bundle with Popper -->
