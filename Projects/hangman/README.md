@@ -35,7 +35,7 @@ Game Functionality:
     - function game_end rests all the values of the game_screen so the game can be played again
 
 1) Inorder to go from the start screen to game screen I attach an onclick to the start button in the start screen where the player submit their names
-    a) once the start button is clicked i use preventDefault to prevent the page from reloading because the name input is a form in the start screen.
+	- once the start button is clicked i use preventDefault to prevent the page from reloading because the name input is a form in the start screen.
     b) the start screen is given a classs of hidden and the class hidden is removed from the game screen inorder to display it.
     c) I call the functopn stand which is what the hangman is displayed on
     d) I also call the function dashes which displays the dashed lines on the screen where the letters guessed will go
