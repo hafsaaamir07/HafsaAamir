@@ -20,8 +20,8 @@ Game Functionality:
   - start screen: screen with game instructions + form to submit player name
   - game screen: screem with player names along with time, keyboard, and hangman display
   - game over screen: 
-        a) first game over screen is for if one of the player guesses the word correct and their name and time is shown on the leaderboard
-        b) second game over screen is if the players are unable to guess the word and at the end the word is displayed.
+        1) first game over screen is for if one of the player guesses the word correct and their name and time is shown on the leaderboard
+        2) second game over screen is if the players are unable to guess the word and at the end the word is displayed.
 - function time takes the arguemnts of the time varaible of current player and the queryslected div that displays the time of that player
 - function stop_time stops the timer using clearInterval
 - function keyboard_keys returns alphabet buttons to the screen that remseble the keyboard
