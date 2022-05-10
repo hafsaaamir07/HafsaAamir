@@ -63,10 +63,15 @@ let correct_word = document.querySelector("#correct_word");
 
 document.addEventListener("DOMContentLoaded", function(){
     let img = document.querySelector(".img");
+    let close = document.querySelector(".close");
+    let imgModal = new bootstrap.Modal(document.querySelector(".modal"));
 
     img.addEventListener("click",function(){
-        let imgModal = new bootstrap.Modal(document.querySelector(".modal"));
         imgModal.show();
+    })
+    close.addEventListener("click", function(){
+        imgModal.hide();
+        
     })
 })
 
@@ -296,7 +301,7 @@ function head(){
     ctx.beginPath();
     ctx.arc (180,73,15,0,2*Math.PI);
     ctx.lineWidth = 2
-    ctx.strokeStyle = "#FFB38C"
+    ctx.strokeStyle = "#7C8BFF"
     ctx.stroke();
 }
 
