@@ -41,6 +41,7 @@ let time2 = 0;
 let best_time = [];
 
 
+
 //for clearInterval
 let stop_time1;
 let stop_time2;
@@ -48,7 +49,26 @@ let stop_time2;
 //tracking who is currently playing
 let currPlay;
 
+/******************Game Over Screen Controls**********************/
 
+let best_time1;
+let best_time2;
+let best_time3;
+
+let game_over = document.querySelector("#game_over")
+let play_again = document.querySelector("#play_again");
+let correct_word = document.querySelector("#correct_word");
+
+
+
+document.addEventListener("DOMContentLoaded", function(){
+    let img = document.querySelector(".img");
+
+    img.addEventListener("click",function(){
+        let imgModal = new bootstrap.Modal(document.querySelector(".modal"));
+        imgModal.show();
+    })
+})
 
 //when form is submit start screen is hidden and game screen is on
 form_btn.onclick = function(event){
@@ -58,6 +78,8 @@ form_btn.onclick = function(event){
     player_nameDisplay[1].innerHTML = `${form.children[1].value}`;
     start_screen.classList.add("hidden");
     game_screen.classList.remove("hidden");
+    stand();
+    dashes();
 }
 
 //fetch request to get random word
@@ -68,6 +90,9 @@ async function randomWord(){
 randomWord();
 
 start_btn.onclick = function (){
+    if (window.localStorage.getItem("leaderboard")){
+        best_time = JSON.parse(localStorage.getItem("leaderboard"));
+    }
     word = word[0].toUpperCase();
     word_array = word.split("");
     console.log(word);
@@ -95,19 +120,25 @@ function play(event){
     let match = letterMatch (event.target.id)
     if (correct_letters.join("") == word){
         console.log(currPlay)
-        alert(`player ${currPlay-1} is the winner`);
-        best(player_nameDisplay[currPlay-1].innerHTML,time1);
+        if (currPlay == 1){
+            best(player_nameDisplay[currPlay-1].innerHTML,time1);
+        }
+        else{
+            best(player_nameDisplay[currPlay-1].innerHTML,time2);
+        }
+        setTimeout(game_end,550);
     }
 
     //if there is not a match, then we switch players
     if (!match){
         lives --;
+        hangMan();
         guesses.innerHTML = `Guesses Left: ${lives}`
         
         //if players 1 letter click not in word, switch to player 2
         if (currPlay === 1){
             currPlay = 2
-            switchPlayer(player_nameDisplay[0], player_nameDisplay[1], stop_time1,"#A6D7C8")
+            switchPlayer(player_nameDisplay[0], player_nameDisplay[1], stop_time1,"#87BDA4")
             stop_time2 = setInterval (()=> {
                 time(time2,p2_time)
                 time2++
@@ -124,7 +155,6 @@ function play(event){
             },1000)
         }
     }
-
 }
 
 
@@ -132,11 +162,38 @@ function best (nm, tm){
     let objects = {};
     objects.name = nm;
     objects.time = tm;
-    best_time.push(objects);
     //would be [{name: nm, time: tm}]
-    let json = JSON.stringify(best_time)
-    console.log(json);
-    window.localStorage.setItem("leaderboard",json);
+    for (let i = 0; i < best_time.length; i++){
+        if (best_time[i].time == tm && best_time[i].name == nm){
+            best_time.pop(best_time[i]);
+        }
+    }
+    
+    best_time.push(objects); 
+    best_time.sort(function(a,b){
+        return a.time - b.time;
+    });
+    
+    window.localStorage.setItem("leaderboard",JSON.stringify(best_time));
+    console.log(best_time);
+
+    // 1 -> currTime
+    // 2 -> best1
+    // 3 -> best2
+    // 4 -> best3
+
+    game_over.children[1].innerHTML = `Your time: ${tm}`
+    //best time 1
+    game_over.children[2].innerHTML = `#1 Best time: ${best_time[0].time} -- ${best_time[0].name}`;
+    
+    if (best_time.length > 1){ //best time 2
+        game_over.children[3].innerHTML = `#2 Best time: ${best_time[1].time} -- ${best_time[1].name}`;
+    }
+    if (best_time.length > 2){
+        game_over.children[4].innerHTML = `#3 Best time: ${best_time[2].time} -- ${best_time[2].name}`;
+
+    }
+
 }
     
 //takes in player 1 and 2 display, also takes in time of player that answered wrong 
@@ -174,7 +231,6 @@ function dashes (){
     word_dashes.appendChild(hr);
     }
 }
-dashes();
 
 //function that updates time on screen and counter
 function time (counter, selector){
@@ -187,8 +243,6 @@ function time (counter, selector){
 function stop_time (t){
     clearInterval(t);
 }
-
-
 
 function keyboard_keys (){
     let alphabet = "ABCDEFGHIJKLMNOPQRTSUVWXYZ"
@@ -215,47 +269,132 @@ function keyboard_keys (){
 keyboard_keys();
 
 function stand (){
-    /*ctx.beginPath();
-    ctx.moveTo(100, 180);
-    ctx.lineTo(400, 180);
-    ctx.stroke();*/
-    ctx.beginPath()
-    ctx.moveTo(500,250); 
-    ctx.lineTo(500,250); 
-    ctx.moveTo(30,250); 
-    ctx.lineTo(30,70); 
-    ctx.lineTo(150,70); 
-    ctx.lineTo(150,100); 
-    ctx.stroke(); 
+    ctx.beginPath();
+    ctx.moveTo(300,30) // -------
+    ctx.lineTo(180,30)
+
+    ctx.moveTo(180,30)//  |   where head hangs
+    ctx.lineTo(180,57)//  |
+
+    ctx.moveTo(300,30)//   |  body line
+    ctx.lineTo(300,230)//  |
+
+    ctx.moveTo(300,230)// _____ right bottom line
+    ctx.lineTo(430,230)//
+
+    ctx.moveTo(300,230)// left bottom line ______
+    ctx.lineTo(180,230)
+
+    ctx.lineWidth = 2
+    ctx.strokeStyle = "#FFEEB5"
+	ctx.stroke(); 
+
 }
-stand();
+
 
 function head(){
     ctx.beginPath();
-    ctx.arc (250,50,20,0,2*Math.PI);
+    ctx.arc (180,73,15,0,2*Math.PI);
+    ctx.lineWidth = 2
+    ctx.strokeStyle = "#FFB38C"
     ctx.stroke();
 }
+
 
 function body(){
     ctx.beginPath();
-    ctx.arc (250,50,20,0,2*Math.PI);
-    ctx.stroke();
+    ctx.moveTo(180,89)
+    ctx.lineTo(180,170)
+    ctx.stroke()
 }
+
 
 function leftArm(){
+    ctx.beginPath();
+    ctx.moveTo(180,120)
+    ctx.lineTo(145,130)
+    ctx.stroke()
 
 }
+
 function rightArm (){
-
+    ctx.beginPath();
+    ctx.moveTo(180,120)
+    ctx.lineTo(220,130)
+    ctx.stroke()
 }
+
 function leftLeg(){
+    ctx.beginPath()
+    ctx.moveTo(180,170)
+    ctx.lineTo(150,180)
+    ctx.stroke()
 
 }
 function rightLeg(){
+    ctx.beginPath()
+    ctx.moveTo(180,170)
+    ctx.lineTo(210,181)
+    ctx.stroke()
 
 }
 
+function hangMan (){
+    switch(lives){
+        case 5:
+            head();
+            break;
+        case 4:
+            body();
+            break;
+        case 3:
+            rightArm();
+            break;
+        case 2:
+            leftArm();
+            break;
+        case 1:
+            rightLeg();
+            break;
+        case 0:
+            leftLeg();
+            console.log("this is word: ",word)
+            correct_word.classList.remove("hidden");
+            correct_word.innerHTML = `Your word was... ${word}`;
+            setTimeout(game_end,550);
+            break;
+    }
+}
 
+function game_end (){
+    game_screen.classList.add("hidden");
+    game_over.classList.remove("hidden");
+    lives = 6;
+    guesses.innerHTML = `Guesses Left: ${lives}`
+    stop_time(stop_time1);
+    stop_time(stop_time2);
+    time1 = 0;
+    time2 = 0;
+    best_time = []; 
+    p1_time.innerHTML = `Time: 0`;
+    p2_time.innerHTML = `Time: 0`;
+    form.children[0].value ="";
+    form.children[1].value ="";
+    player_nameDisplay[0].classList.remove("glow");
+    player_nameDisplay[1].classList.remove("glow");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+play_again.onclick = function(){
+    game_over.classList.add("hidden");
+    start_screen.classList.remove("hidden");
+    game_over.children[3] ="";
+    game_over.children[4] ="";
+    game_over.children[5] ="";
+    correct_word.classList.add("hidden")
+    word_dashes.innerHTML="";
+    randomWord();
+}
 /*PLAYER 1 */
             //if there is a letter match 
             //player 1 continues
