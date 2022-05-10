@@ -20,11 +20,11 @@ Game Functionality:
   - start screen: screen with game instructions + form to submit player name
   - game screen: screem with player names along with time, keyboard, and hangman display
   - game over screen: 
-        1) first game over screen is for if one of the player guesses the word correct and their name and time is shown on the leaderboard
-        2) second game over screen is if the players are unable to guess the word and at the end the word is displayed.
-- function time takes the arguemnts of the time varaible of current player and the queryslected div that displays the time of that player
-- function stop_time stops the timer using clearInterval
-- function keyboard_keys returns alphabet buttons to the screen that remseble the keyboard
+  	1) first game over screen is for if one of the player guesses the word correct and their name and time is shown on the leaderboard
+  	2) second game over screen is if the players are unable to guess the word and at the end the word is displayed.
+  - function time takes the arguemnts of the time varaible of current player and the queryslected div that displays the time of that player
+  - function stop_time stops the timer using clearInterval
+  - function keyboard_keys returns alphabet buttons to the screen that remseble the keyboard
  	1) has a varible called alpahbet that is a string of the alphabet in uppercase joined with no space
  	2) I split the varaible alpahbet using .split("") and store the value that is returned in an varible called letter bc the value returned is an array that has each of the letters.
  	3) I use map to go throughthe array and create a button for each element and give it a class of btn_key that styles the buttons.
