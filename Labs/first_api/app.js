@@ -43,7 +43,7 @@ const updateLearner = (request, response) => {
     });
   };
 
-  // This controller is to delete a single learner
+// This controller is to delete a single learner
 const deleteLearner = (request, response) => {
     response.status(500).json({
       status: "fail",
@@ -52,58 +52,22 @@ const deleteLearner = (request, response) => {
       },
     });
   };
-  
-  
-                       /*Creating route handlers */
-//getting names of all learners
-app.get("/api/v1/learners", (request,response) => {
-    response.status(500).json({
-        status:"fail",
-        data: {
-            message: "undefined routes"
-        }
-    })
-})
+//create a express router
+  const learnerRouter = express.Router();
 
-//allow us to add a new learner
-app.post("/api/v1/learners", (request,response) => {
-    response.status(500).json({
-        status:"fail",
-        data: {
-            message: "undefined routes"
-        }
-    })
-})
 
-//getting one single learner
-app.get("/api/v1/learners/:id", (request,response) => {
-    response.status(500).json({
-        status:"fail",
-        data: {
-            message: "undefined routes"
-        }
-    })
-})
+// Create a middleWare to handle route /api/v1/learners/
+// /api/v1/learners/:id
 
-//getting one learner so we can update their info 
-app.patch("/api/v1/learners/:id", (request,response) => {
-    response.status(500).json({
-        status:"fail",
-        data: {
-            message: "undefined routes"
-        }
-    })
-})
+app.use("/api/v1/learners",learnerRouter);
 
-//delete a learner
-app.delete("/api/v1/learners/:id", (request,response) => {
-    response.status(500).json({
-        status:"fail",
-        data: {
-            message: "undefined routes"
-        }
-    })
-})
+// Lets refactor route handles
+app.route("/").get(getAllLearners).post(createLearner);
+app.route("/:id")
+.get(getSingleLearner)
+.patch(updateLearner)
+.delete(deleteLearner);
+
 
 
 const port = 3000;
