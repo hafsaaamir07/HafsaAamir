@@ -1,5 +1,7 @@
  /*Refactor route controllers*/
 
+ const Learner = require("../models/learnerModel");
+
 // This is to retrieve all the learners at once
 exports.getAllLearners = (request, response) => {
     response.status(500).json({
@@ -11,13 +13,23 @@ exports.getAllLearners = (request, response) => {
   };
   
 // This controller is to create a new learner
-exports.createLearner = (request, response) => {
-    response.status(500).json({
-      status: "fail",
+exports.createLearner = async (request, response) => {
+  try {
+      //create our first learner
+    const newLearner = await Learner.create(request.body)
+    response.status(201).json({
+      status: "success",
       data: {
-        message: "undefined routes",
+        newLearner: newLearner,
       },
     });
+  }
+  catch(err){
+    response.status(500).json({
+      status: "error",
+      message: error
+    })
+  }
   };
   
 // This controller is to retrieve a single learner
