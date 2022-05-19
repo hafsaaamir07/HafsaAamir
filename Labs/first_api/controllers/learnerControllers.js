@@ -17,7 +17,7 @@ exports.getAllLearners =  async (request, response) => {
         },
       });
   }
-  catch(err){
+  catch(error){
     response.status(500).json({
       status: "error",
       message: error,
@@ -37,22 +37,33 @@ exports.createLearner = async (request, response) => {
       },
     });
   }
-  catch(err){
+  catch(error){
     response.status(500).json({
       status: "error",
-      message: error
+      message: error,
     })
   }
   };
   
 // This controller is to retrieve a single learner
-exports.getSingleLearner = (request, response) => {
-    response.status(500).json({
-      status: "fail",
+exports.getSingleLearner = async (request, response) => {
+  try{
+    //find a single learner using the id
+    const learner = await Learner.findById(request.params.id)
+      response.status(200).json({
+      status: "success",
       data: {
-        message: "undefined routes",
+        learner: learner,
       },
     });
+  }
+  catch(error){
+    response.status(500).join({
+      stauts: "error",
+      message: error,
+
+    })
+  }
   };
   
 // This controller is to update a single learner data
