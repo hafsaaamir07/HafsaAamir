@@ -3,13 +3,26 @@
  const Learner = require("../models/learnerModel");
 
 // This is to retrieve all the learners at once
-exports.getAllLearners = (request, response) => {
+exports.getAllLearners =  async (request, response) => {
+
+  try{
+    //get all learners
+    const learners = await Learner.find();
+
+    //send response
+      response.status(200).json({
+        status: "sucsess",
+        data: {
+          learners: learners,
+        },
+      });
+  }
+  catch(err){
     response.status(500).json({
-      status: "fail",
-      data: {
-        message: "undefined routes",
-      },
-    });
+      status: "error",
+      message: error,
+    })
+  }
   };
   
 // This controller is to create a new learner
