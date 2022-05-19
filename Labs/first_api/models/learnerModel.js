@@ -21,4 +21,8 @@ const learnerSchema = new mongoose.Schema({
     }
 })
 
-const Learner = mongoose.model("Learner", learnSchema);
+//creating our model
+const Learner = mongoose.model("Learner", learnerSchema);
+
+//export pur learner model to other parts
+module.exports = Learner; //single export of the model
