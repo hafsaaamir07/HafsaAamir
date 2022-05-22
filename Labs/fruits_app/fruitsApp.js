@@ -2,8 +2,11 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 
-const fruitData = require (".models/fruits");
+app.set("view engine", "jsx");
+app.engine("jsx", require("express-react-views"),createEngine());
 
+
+const fruitData = require (".models/fruits");
 
 app.get("/fruits/",(req,res) => {
     res.send(fruitData);
