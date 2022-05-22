@@ -2,15 +2,16 @@ const express = require("express");
 const app = express();
 require ("dotenv").config // link env
 
+const fruitData = require ("./models/fruits")
 
 
-app.get("/fruits",(req,res) => {
-    res.render("Index");
+app.get("/fruits/",(req,res) => {
+    res.send(fruitData);
 });
 
 //add show route
 app.get("/fruits/:indexofFruitsArray",(req,res) => {
-    res.render("Show", {fruit: fruitData[req.params.indexofFruitsArray]});
+    res.send(fruitData[req.params.indexofFruitsArray]);
 });
 
 app.listen (3000, () => {
