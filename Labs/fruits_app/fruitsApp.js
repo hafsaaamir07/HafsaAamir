@@ -31,9 +31,9 @@ app.post("/fruits", (req,res) => {
     else{
         req.body.readyToEat = false;
     }
-    fruits.push(req.body);
-    console.log(fruits)
-    res.send("data received");
+    fruitData.push(req.body);
+    console.log(fruitData)
+    res.redirect("/fruits.js"); //not file path just the route were trying to redirect to
 })
 
 app.listen(3000, ()=> {
