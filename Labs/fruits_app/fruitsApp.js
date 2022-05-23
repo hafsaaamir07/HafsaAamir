@@ -1,9 +1,12 @@
 const express = require("express");
+const fruits = require("./models/fruits");
 const app = express();
 require("dotenv").config();
 
 app.set("view engine", "jsx");
 app.engine("jsx",require("express-react-views").createEngine());
+
+app.use(express.urlencoded({extended: false}));
 
 
 const fruitData = require ("./models/fruits");
@@ -22,7 +25,15 @@ app.get("/fruits/:indexOfFruitsArray", (req,res) =>{
 
 // post request
 app.post("/fruits", (req,res) => {
-    res.send("hi");
+    if(req.body.readyToEat === "on"){
+        req.body.readyToEat = true; 
+    }
+    else{
+        req.body.readyToEat = false;
+    }
+    fruits.push(req.body);
+    console.log(fruits)
+    res.send("data received");
 })
 
 app.listen(3000, ()=> {
