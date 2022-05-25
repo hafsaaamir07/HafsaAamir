@@ -4,7 +4,6 @@ const PORT = 3000;
 
 const pokemon = require("./models/pokemon")
 
-
 app.set("view engine","jsx");
 app.engine("jsx",require("express-react-views").createEngine());
 
@@ -16,6 +15,10 @@ app.get("/", (req,res) => {
 
 app.get("/pokemon", (req,res) =>{
     res.render("Index", {pokemons: pokemon});
+})
+
+app.get("/pokemon/:id",(req,res) => {
+    res.send(req.params.id);
 })
 
 app.listen(3000, () => {
