@@ -1,71 +1,55 @@
-//require express inorder build an express application
+//require express inorder to build an express application
 const express = require("express");
 
 //create a variable to store our express methods
 const app = express();
 
-require("dotenv").config();
-
+//setting our view engine to ejs
 app.set("view engine","ejs");
 
-
-
-//refactor controllers:
-const getAllCourses = (req, res) => {
-    res.send("index page")
+                                                /**************refactoring route controllers**************/
+const getAllCourses = (req,res) => {
+    res.render("index")
 }
-const createCourse = (req,res) {
-    res.send("post request")
+const createCourse = (req,res) => {
+    res.send("created a new course")
 }
-
-const getSingleCourse = (req,res) => {
-    res.send(req.params.id)
+const showCourse = (req,res) => {
+    res.render("show")
 }
-
 const updateCourse = (req,res) => {
-    res.send("update course")
+    res.send("updated ",req.params.id)
 }
-
-const deleteCourse = (req,res) => {
-    res.send("deleted course")
+const deleteCourse =  (req,res) => {
+    res.send("delete ",req.params.id)
 }
-// index page: list of course
+const newCourse = (req,res) => {
+    res.render("new")
+}
+const editCourse = (req,res) => {
+    res.render("edit")
+}
+                                                      /*************creating route handlers**************/
+//index (displays all courses) route
 app.get("/admin/courses", getAllCourses)
 
-//shows page: individual course
-app.get("/admin/courses/:id", getSingleCourse)
+//create a course route
+app.post("/admin/courses/", createCourse)
 
-//new page: allows to create a new course
-app.get("/admin/courses/new", (req,res) => {
-    res.send("new page")
-})
+//show a course route
+app.get("/admin/courses/:id",showCourse)
 
-//edit page: allows us to edit a single course
-app.get("/admin/courses/:id/edit", (req,res) => {
-    res.send("edit page")
-})
-//delete route
+//update a course route
+app.patch("/admin/courses/:id", updateCourse)
+
+//delete a course route
 app.delete("/admin/courses/:id", deleteCourse)
 
-//update a course
-app.patch("/admin/course/:id", updateCourse)
+//new course route
+app.get("/admin/courses/new", newCourse)
 
-//creates a new course
-app.post("/admin/course/", createCourse)
-
-
+//edits a course route
+app.get("/admin/courses/:id/edit", editCourse)
 
 
-
-
-
-
-
-//listeb to the request/response cycle
-app.listen(3000, () => {
-    console.log(`Listening server on PORT ${process.env.PORT}`);
-})
-
-
-
-
+module.exports = app;
