@@ -36,21 +36,20 @@ const newCourse = (req,res) => {
 const editCourse = (req,res) => {
     res.render("edit")
 }
+//create an exppress router 
+const courseRouter = express.Router();
+                                                            /**************middleware**************/
+//creating middleware to handle routes
+app.use("/admin/courses", courseRouter)
                                                        /*************refactor our route handlers*************/
 //base route
-app.route("/admin/courses").get(getAllCourses).post(createCourse)
-app.route("/admin/courses").get(showCourse).patch(updateCourse).delete(deleteCourse)
-app.route("/admin/courses").get(newCourse)
-app.route("/admin/courses").get(editCourse)
+courseRouter.route("/").get(getAllCourses).post(createCourse) // if we do "/admin/courses" plus "/" will take me to these routes
+courseRouter.route("/:id").get(showCourse).patch(updateCourse).delete(deleteCourse)
+courseRouter.route("/new").get(newCourse)
+courseRouter.route("/:id/edit").get(editCourse)
 
 
-
-
-
-
-
-
-                                                      /*************creating route handlers**************/
+                                                   /*************creating route handlers
 //index (displays all courses) route
 app.get("/", getAllCourses) // "/admin/courses" 
 
@@ -70,7 +69,7 @@ app.delete("/:id", deleteCourse) // "/admin/courses/:id"
 app.get("/admin/courses/new", newCourse) // "/admin/courses/new"
 
 //edits a course route
-app.get("/:id/edit", editCourse) // "/admin/courses/:id/edit"
+app.get("/:id/edit", editCourse) // "/admin/courses/:id/edit" **************/
 
 
 module.exports = app;
