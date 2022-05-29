@@ -5,6 +5,9 @@ const { model } = require("mongoose");
 //create an express router
 const courseRouter = express.Router();
 
+//import course controllers 
+const courseController = require("./../controllers/courseController")
+
                                                         /*route handlers*/
 //base route
 courseRouter.route("/")
@@ -21,4 +24,4 @@ courseRouter.route("/:id/edit")
 
 //export our router to be used in other parts of the our application
 // this is a single export
-model.exports = router;
+model.exports = courseRouter;
