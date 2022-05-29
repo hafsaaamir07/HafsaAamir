@@ -8,15 +8,18 @@ const dotenv = require("dotenv");
 dotenv.config({
     path:"./config.env",
 });
-//console.log(process.env)
+
+
 //import our express application
 const app = require ("./courseApp");
 
+//connecting to database
 const AdminCourses = mongoose.connect(process.env.DATABASE.replace("<password>",process.env.PASSWORD))
 .then(() => {
     console.log("Database is running")
 });
 
+//running port
 app.listen(3000, () => {
     console.log(`Server running on PORT ${process.env.PORT}`)
 })
