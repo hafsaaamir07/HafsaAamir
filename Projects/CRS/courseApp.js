@@ -4,9 +4,6 @@ const express = require("express");
 //create a variable to store our express methods
 const app = express();
 
-//import course controller here
-const courseController = require("./controllers/courseController");
-
 //import course routes
 const courseRoutes = require("./routes/courseRoutes")
 
