@@ -20,4 +20,5 @@ courseRouter.route("/:id/edit")
     .get(courseController.editCourse)
 
 //export our router to be used in other parts of the our application
+// this is a single export
 model.exports = router;
