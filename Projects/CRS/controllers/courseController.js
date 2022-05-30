@@ -1,4 +1,6 @@
-                                              
+ //import model to create courses
+ const Course = require("./../models/courseModel") 
+  
                                               /*route controllers*/
 // this is to retrieve all the courses at once
  exports.getAllCourses = (req,res) => {
