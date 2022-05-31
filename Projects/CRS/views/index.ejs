@@ -11,10 +11,12 @@
         <h1>Course</h1>
         <div id = "display-courses">
             <%courseList.forEach(c => {%>
-                <a href= <%= c.Course_Name %> ></a> <br>
+                <a href= "/admin/courses/<%= c._id %>"> <%= c.Course_Name %></a> <br> 
                 <img src= <%= c.Headshot %> />
                 <p> <%= "Course Instuctor: "+c.Instructor%></p>
            <% }) %>
+
+                    
         </div>
     </div>
 
