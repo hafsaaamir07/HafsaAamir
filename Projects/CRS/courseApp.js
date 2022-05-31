@@ -11,12 +11,16 @@ const courseRoutes = require("./routes/courseRoutes")
 app.set("view engine","ejs");
 
 
-//create an exppress router 
-const courseRouter = express.Router();
+//create a middleware to parse the request body
+app.use(express.json())
+app.use(express.urlencoded({extended: false}));
 
 //creating middleware to handle routes
-app.use("/admin/courses", courseRouter);
+app.use("/admin/courses", courseRoutes);
 
+
+
+module.exports = app;
 
 /*************refactor our route handlers**********
 //base route
@@ -54,4 +58,3 @@ app.get("/admin/courses/new", newCourse) // "/admin/courses/new"
 app.get("/:id/edit", editCourse) // "/admin/courses/:id/edit" **************/
 
 
-module.exports = app;
