@@ -1,10 +1,22 @@
  //import model to create courses
- const Course = require("./../models/courseModel") 
+ const Courses = require("./../models/courseModel") 
+ 
   
                                               /*route controllers*/
 // this is to retrieve all the courses at once
- exports.getAllCourses = (req,res) => {
-    res.render("index")
+ exports.getAllCourses = async (req,res) => {
+     try {
+        const courses = await Courses.find();
+    
+        //Courses.find({},function (err, c){
+            //console.log(c)
+           res.render("index", {courseList: courses})
+        //})
+       
+    }
+    catch(error){
+        console.log(error);
+    }
 }
 //this is to create a a new course
  exports.createCourse = (req,res) => {
@@ -12,7 +24,7 @@
 }
 //this is to retrieve a single course
  exports.showCourse = (req,res) => {
-    res.render("show")
+    res.render("show", {courseList: req.params.id})
 }
 //this initiates a form request to update a single course
  exports.updateCourse = (req,res) => {
