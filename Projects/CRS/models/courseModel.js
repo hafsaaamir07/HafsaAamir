@@ -7,7 +7,19 @@ const courseSchema = new mongoose.Schema({
         type: String,
     },
     Course_Id: {
+        type: String,
+    },
+    Units: {
         type: Number,
+    },
+    Semester_Level: {
+        type: String,
+    },
+    Prereq: {
+        type: String,
+    },
+    Course_Description: {
+        type: String,
     },
     Max_Students:{
         type: Number,
