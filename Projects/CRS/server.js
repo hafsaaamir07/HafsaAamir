@@ -1,3 +1,6 @@
+//import our express application
+const app = require ("./courseApp");
+
 //import mongoose inorder to connect to our database
 const mongoose = require("mongoose");
 
@@ -9,9 +12,6 @@ dotenv.config({
     path:"./config.env",
 });
 
-
-//import our express application
-const app = require ("./courseApp");
 
 //connecting to database
 const AdminCourses = mongoose.connect(process.env.DATABASE.replace("<password>",process.env.PASSWORD))
