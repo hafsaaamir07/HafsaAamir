@@ -20,8 +20,18 @@
     }
 }
 //this is to retrieve a single course
-exports.showCourse = (req,res) => {
-    res.render("show", {course: Courses[req.params.id]})
+exports.showCourse = async (req,res) => {
+    try{
+        const singleCourse = await Courses.findById(req.params.id)
+        res.render("show", {course: singleCourse})
+    }
+    catch(error){
+        res.status(500).json({
+            status: "ERROR check showCourse",
+            message: error,
+        })
+    }
+    
 }
 
 //this initiate a form request to create a new course
@@ -31,7 +41,7 @@ exports.newCourse = (req,res) => {
     }
     catch(error){
         res.status(500).json({
-            status: "ERROR check showCourse",
+            status: "ERROR check newCourse",
             message: error,
         })
     }
