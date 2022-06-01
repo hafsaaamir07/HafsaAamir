@@ -14,6 +14,7 @@ app.set("view engine","ejs");
 //create a middleware to parse the request body
 app.use(express.json())
 app.use(express.urlencoded({extended: false}));
+app.use(express.static(__dirname+"/public"));
 
 //creating middleware to handle routes
 app.use("/admin/courses", courseRoutes);
