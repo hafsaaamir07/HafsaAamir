@@ -39,6 +39,7 @@ const headers = [
     "Course_Name",
     "Course_Id",
     "Units",
+    "Course_Number",
     "Semester_Level",
     "Prereq",
     "Course_Description",
