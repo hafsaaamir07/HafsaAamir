@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            background-color: #330662;
+            font-family: "Gotham SSm A", "Gotham SSm B", Helvetica, sans-serif;
+        }
+        #login-box{
+            width: 600px;
+            height: 500px;
+            background-color: #ffffff;
+            position: absolute;
+            z-index: 15;
+            top: 30%;
+            left: 42%;
+            margin: -100px 0 0 -150px;
+           
+        }
+        img{
+            height: 90px;
+            width: 140px;
+        }
+        #login-sign{
+            font-family:"Gotham SSm A","Gotham SSm A";
+            font-size: 25px;
+            letter-spacing: 0;
+            font-style: normal;
+            font-weight: 700;
+            color: rgb(61,77,93);
+            margin-left: 30px;
+            margin-top: -10px;
+            margin-bottom: 45px;
+
+        }
+        form{
+            padding-left: 30px;
+            
+        }
+        #netID, #pass{
+            height: 40px;
+            width:248px;
+            border: 1px solid #e2e1dd;
+            background-color: rgb(232, 240, 254);
+            margin-bottom: 10%;
+        }
+        #login-text{
+            display: flex;
+        }
+        #submit{
+            width: 100px;
+            height: 45px;
+            background-color: white;
+            font-size: 15px;
+            color:#57068c;
+            border: solid 1px #57068c; 
+            margin-top: 5%;
+        }
+        #submit:hover{
+            width: 100px;
+            height: 45px;
+            background-color: #57068c ;
+            font-size: 15px;
+            color: white;
+            margin-top: 5%;
+        }
+        #policy{
+            width: 248px;
+            font-style: italic;
+            margin-top: -2%;
+            line-height: 22px;
+        }
+        #cybersecurity{
+            text-align: left;
+            width: 200px;
+            margin-top: 2%;
+            margin-left: 8%;
+            line-height: 22px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div id="login-box">
+
+            <img src="/imgs/nyulogo.png">
+            <p id="login-sign">Log In to Your NYU Account</p>
+            <div id="login-text">
+                <form action ="/admin/courses/login" method="POST" id="form">
+                    <label for="netID">NetID (e.g., aqe123)</label><br>
+                    <input type="text" id="netID" name="netID"> <br>
+                    <label for="password">Password</label><br>
+                    <input type="password" id ="pass" name="pass"><br>
+                    <div id="policy">
+                        By logging in, you agree to abide
+                        <a href="https://www.nyu.edu/about/policies-guidelines-compliance/policies-and-guidelines/responsible-use-of-nyu-computers-and-data-policy-on.html">
+                        Policy on Responsible Use of NYU Computers and Data.
+                        </a>
+                    </div>
+                    <input type="submit" id="submit">
+                </form>
+    
+                <div id="cybersecurity">Be cybersecurity aware:
+                <a href="https://nyu.service-now.com/sp?id=kb_article&sysparm_article=KB0015659&sys_kb_id=da898c9a13ca72002f4c3d27d144b020&spa=1">
+                Learn how to confirm that this is the legitimate NYU Login page.</a>
+                </div>        
+            </div>
+            
+
+        </div>
+    </div>
+   
+   
+</body>
+</html>
