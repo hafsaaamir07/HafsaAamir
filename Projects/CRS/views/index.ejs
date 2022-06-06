@@ -5,20 +5,227 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>course</title>
+    <style>
+        body{
+            background-color: white;
+        }
+        #header{
+            background-color: #57068c;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        #whiteLogo{
+            width:120px;
+            height: 45px;
+            margin-top: 8px;
+        }
+        #name-logout{
+            display: flex;
+            justify-content: space-between;
+            font-family: "Gotham SSm 3r", "Gotham SSm A", "Gotham SSm B", helvetica, arial, sans-serif !important;
+        }
+        #admin-name{
+            color: white;
+            font-size: 17px;
+            letter-spacing: 3px;
+            margin-top: 20px;
+            margin-right: 30px;
+
+        }
+        #btn-logout{
+            width:100px;
+            height: 30px;
+            margin-top: 8%;
+            background-color:#57068c;
+            color: White;
+            border: 1px solid white;
+            font-size: 17px
+        }
+       
+        #albert{
+            letter-spacing: 3px;
+            margin-left: 25%;
+            font-family: 'Quicksand', helvetica, arial, sans-serif;
+            color:  #2c3e50;
+            font-size: 50px;
+        }
+        #side-bar{
+            position: fixed;
+            margin-left: 50px;
+           
+        }
+
+        hr{
+            width: 980px;
+        }
+        #course-logo, #report-logo, #setting-logo{
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+        #add-course, #student-report, #settings{
+            display: flex;
+            flex-direction: column;
+        }
+        a{
+            text-decoration: none;
+            font-family: "Gotham SSm 4r", "Gotham SSm A", "Gotham SSm B", helvetica, arial, sans-serif;
+            margin-left: -5px;
+            margin-bottom: 45px;
+        }
+
+        #course-name{
+            margin-left: 40%;
+            text-decoration: none;
+            word-spacing: 4px;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(58, 66, 114);
+        }
+        #headshot{
+            width: 200px;
+            height: 200px;
+            
+        }
+        .grid-conatiner{
+            display: grid;
+            grid-template-columns: auto auto;
+            padding: 5px;
+            width: 500px;
+            height: 100px;
+        }
+        .grid-item{
+            text-align: left;
+            display: flex;  
+            font-size: 17px;
+            height: 40px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-left: -300px;
+        }
+       span{
+            margin-right: 2%;  
+        }
+        
+        #status{
+            font-weight: bold;
+            color: green;
+        }
+        #display-courses{
+            margin-top: 2%;
+        }
+        #side-by-side{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            margin-right: 15%;
+            margin-left: 25%;
+        }
+        
+        #instructor-name{
+            margin-left: -3px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #278580;
+        }
+        #prereq, #description{
+            width: 1280px;
+            text-align: left;
+            margin-left: 20%;
+            font-size: 15px;
+            line-height: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+        #description{
+            margin-bottom: 25px;
+        }
+        .bold{
+            font-weight: bold;
+            color: #28619e;
+        }
+        .footer{
+            font-size: 12px;
+            margin-top: 10%;
+            letter-spacing: 2px;
+            margin-left: 20px;
+            font-family: sans-serif;
+            color: rgb(112, 42, 42);
+        }
+
+    </style>
 </head>
 <body>
     <div class="container-fluid">
-        <h1>Course</h1>
-        <div id = "display-courses">
-            <%courseList.forEach(c => {%>
-                <a href= "/admin/courses/<%= c._id %>"> <%= c.Course_Name %></a> <br> 
-                <img src= <%= c.Headshot %> />
-                <p> <%= "Course Instuctor: "+c.Instructor%></p>
-           <% }) %>
+        <div id="header">
+            <img id="whiteLogo" src="/imgs/whiteLogo.png">
+            <div id="name-logout">
+                <p id="admin-name">ADMIN</p>
+                <button id="btn-logout">LOG OUT</button>
+            </div>
+        </div>
+        <h1 id="albert">Albert</h1><hr>
 
-                    
+        <div id="side-bar">
+            <div id="add-course">
+                <img id="course-logo" src="/imgs/course.png">
+                <a id="add-link"href="/admin/courses/new">Add a New Course</a>
+            </div>
+            <div id="student-report">
+                <img id="report-logo"src="/imgs/report.png">
+                <a href="">Student Reports</a>
+            </div>
+            <div id="settings">
+                <img id="setting-logo" src="/imgs/settings.png">
+                <a href="">Admin Settings</a>
+            </div>
+        </div>
+
+        </div>
+        <div id = "display-courses">
+            <%courseList.forEach(course => {%>
+                <b id="course-name-bold"><a id="course-name" href= "/admin/courses/<%= course._id %>"> <%= course.Course_Id+" "+course.Course_Name %></a> </b><br> 
+                <div id="side-by-side">
+                    <div id="instructor-details">
+                        <img id="headshot" src= <%= course.Headshot %> />
+                        <p id="instructor-name"><%= "Course Instructor: "+course.Instructor%></p>
+                    </div>
+                    <div id="course-details" class="grid-conatiner">
+                        <div class="grid-item">
+                            <span class="bold">Class # :</span><span class="left"> <%= course.Course_Number%></span>
+                        </div>
+                        <div class="grid-item">
+                            <span class="bold">Section: </span><span class="left"><%= course.Section_Number%></span> 
+                        </div>
+                        <div class="grid-item">
+                            <span class="bold">Grading: </span><span class="left">CAS Graded</span>
+                        </div>
+                        <div class="grid-item">
+                            <span class="bold">Course Location: </span><span class="left"><%= course.Location%></span>
+                        </div>
+                        <div class="grid-item">
+                            <span class="bold">Session: </span><span class="left">TBD</span>
+                        </div>
+                        <div class="grid-item">
+                            <span class="bold">Class Status: </span><span id="status" class="left">Open</span>
+                        </div>
+                        <div class="grid-item">
+                            <span class="bold">Instruction Mode: </span><span class="left">In-Person</span>
+                        </div>
+                        <div class="grid-item">
+                            <span class="bold">Component: </span><span class="left">Lecture</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="prereq"> <b>Prerequisites:</b> <%=course.Prereq%></div>
+                <div id="description"> <b>Course Description: </b><%=course.Course_Description%> </div>
+           <% }) %>
+        </div>
+        <div class="footer">
+            <p>Copyright 1999-2022</p>
+            <p>New York University</p>
         </div>
     </div>
-
 </body>
 </html>
