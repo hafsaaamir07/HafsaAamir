@@ -11,19 +11,21 @@ const courseController = require("./../controllers/courseController")
                                                         /*route handlers*/
 //base route
 //post request for login 
-courseRouter.route("/")
+courseRouter.route("/login")
+    .get(courseController.adminLogin)
+    .post(courseController.authenticateLogin)
+courseRouter.route("/") 
     .get(courseController.getAllCourses) // if we do "/admin/courses/:id" plus "/" will take me to these routes
     .post(courseController.createCourse) 
-courseRouter.route("/login")
-    .post(courseController.adminLogin)
 courseRouter.route("/new")
     .get(courseController.newCourse)
 courseRouter.route("/:id")
     .get(courseController.showCourse)
     .delete(courseController.deleteCourse)
+    .patch(courseController.updateCourse)
 courseRouter.route("/:id/edit")
     .get(courseController.editCourse)
-    .patch(courseController.updateCourse)
+   
 
 //export our router to be used in other parts of the our application
 // this is a single export
