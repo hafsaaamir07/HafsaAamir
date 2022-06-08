@@ -66,7 +66,7 @@ class App extends React.Component{
     render (){
         const dataList = this.state.data.map((element) => {
             return(
-                <ul>
+                <ul className="products">
                      <ProductList element={element} />
                 </ul>
             );
@@ -86,13 +86,17 @@ class App extends React.Component{
                     <br></br>
                     <input type="submit"/>
                 </form>
-                <div>
+                <div className="preview">
                     <h2>Preview our new item</h2>
                     <h3>{this.state.name}</h3>
                     <h4>{this.state.price}</h4>
                     <h5>{this.state.description}</h5>
                 </div>
                 {dataList}
+                <div className="cart">
+                    <h3>Shopping Cart</h3>
+                    <ul></ul>
+                </div>
             </div>
         );
     };
