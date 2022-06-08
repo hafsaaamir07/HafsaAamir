@@ -14,16 +14,27 @@ class App extends React.Component{
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value,
-        })
-    }
+        });
+    };
 
     //create a method to submit form
-    handleFormSubmit = () => {
+    handleFormSubmit = (e) => {
         e.preventDefault();
-    }
+
+        //lets add new item to our data array
+        const newItem = {
+            name: this.state.name,
+            price: this.state.price,
+            description: this.state.description
+        };
+        //add new items to our data array
+        this.setState({
+            data: [newItem, ...this.state.data]
+        })
+    };
     
     render (){
-        const dataList = data.map((element) => {
+        const dataList = this.state.data.map((element) => {
             return(
                 <ul>
                     <li>{element.name} {element.price}</li>
@@ -35,9 +46,9 @@ class App extends React.Component{
                 <h1>Big Time Shopping</h1>
                 <form onSubmit={this.handleFormSubmit}> 
                     <label htmlFor="name">Name: </label>
-                    <input id="name" type="text" value={this.state.name} onChange={this.handleChange}/><br></br>
+                    <input id="name" type="text" value={this.state.name} onChange={this.handleChange}/><br></br><br></br>
                     <label htmlFor="price">Price: </label>
-                    <input id="price" type="text" value={this.state.price} onChange={this.handleChange}/><br></br>
+                    <input id="price" type="text" value={this.state.price} onChange={this.handleChange}/><br></br><br></br>
                     <label htmlFor="description">Description: </label>
                     <input id="description" type="text" value={this.state.description} onChange={this.handleChange}/><br></br>
                     <br></br>
