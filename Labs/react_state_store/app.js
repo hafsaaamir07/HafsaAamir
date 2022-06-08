@@ -8,7 +8,8 @@ class App extends React.Component{
         value: "",
         name: "",
         price: 0,
-        description: "Describe this item"
+        description: "Describe this item",
+        isHiring: true,
     };
     //create a method to change user input
     handleChange = (e) => {
@@ -44,6 +45,7 @@ class App extends React.Component{
         return (
             <div>
                 <h1>Big Time Shopping</h1>
+                <h2>{this.state.isHiring ? <h2>Yes we are hiring!</h2>: <h2>Sorry try again tommorow</h2>}</h2>
                 <form onSubmit={this.handleFormSubmit}> 
                     <label htmlFor="name">Name: </label>
                     <input id="name" type="text" value={this.state.name} onChange={this.handleChange}/><br></br><br></br>
