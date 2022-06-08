@@ -1,5 +1,16 @@
 //create a total component to sum up items inside shopping cart
-
+class Total extends React.Component{
+    render(){
+        const total = this.props.cart.reduce((accumulator, element) => {
+            return (accumulator += element.price)
+        }, 0)
+        return(
+            <div>
+                <h4>Total: {Math.round(total)}</h4>
+            </div>
+        );
+    };
+};
 
 
 //create the shopping list component to recieve the data from the cart
@@ -11,7 +22,10 @@ class ShoppingList extends React.Component{
             );
         });
         return(
-            <ul>{cartItems}</ul>
+            <div>
+                <ul>{cartItems}</ul>
+                {this.props.children}
+            </div>         
         );
     };
 };
@@ -25,7 +39,7 @@ class ProductList extends React.Component{
     //create a function to toggle the state of our shopping cart
     handleCartToggle = () => {
         this.setState({
-            inShoppingCart: !this.state.inShoppingCart
+            inShoppingCart: !this.state.inShoppingCart,
         });
     };
     render(){
@@ -51,7 +65,7 @@ class App extends React.Component{
         price: 0,
         description: "Describe this item",
         isHiring: true,
-        cart: []
+        cart: [],
     };
 
     //create a method to change user input
@@ -103,7 +117,7 @@ class App extends React.Component{
             <div>
                 <h1>Big Time Shopping</h1>
                 <h2>{this.state.isHiring ? <h2>Yes we are hiring!</h2>: <h2>Sorry try again tommorow</h2>}</h2>
-                <button onClick={this.handleToggle}>Toggle Hiring</button><br></br>
+                <button onClick={this.handleToggleHiring}>Toggle Hiring</button><br></br>
                 <form onSubmit={this.handleFormSubmit}> 
                     <label htmlFor="name">Name: </label>
                     <input id="name" type="text" value={this.state.name} onChange={this.handleChange}/><br></br><br></br>
@@ -123,8 +137,9 @@ class App extends React.Component{
                 {dataList}
                 <div className="cart">
                     <h3>Shopping Cart</h3>
-                    <ShoppingList cart={this.state.cart} />
-                    <ul></ul>
+                    <ShoppingList cart={this.state.cart}>
+                        <Total cart={this.state.cart}/>
+                    </ShoppingList>
                 </div>
             </div>
         );
