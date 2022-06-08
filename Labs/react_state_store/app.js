@@ -1,9 +1,17 @@
 //create class component
 class ProductList extends React.Component{
     render(){
+        //render the product list
+            const productList = this.props.data.map((element) => {
+                return(
+                    <li>
+                        {element.name} {element.price}
+                    </li>
+                )
+            })
         return(
             <div>
-                <h1>Product List Component</h1>
+                {productList}
             </div>
         )
     }
@@ -84,7 +92,7 @@ class App extends React.Component{
                 </div>
                 {/*this.state.data[0].name*/}
                 {dataList}
-                <ProductList />
+                <ProductList data={data} />
             </div>
         );
     };
