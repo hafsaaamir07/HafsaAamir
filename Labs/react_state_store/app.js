@@ -1,7 +1,17 @@
-console.table(data)
+//create class component
+class ProductList extends React.Component{
+    render(){
+        return(
+            <div>
+                <h1>Product List Component</h1>
+            </div>
+        )
+    }
+}
 
 //create class component to render data to the screen
 class App extends React.Component{
+
     //initialize your state
     state = {
         data: data,
@@ -11,6 +21,7 @@ class App extends React.Component{
         description: "Describe this item",
         isHiring: true,
     };
+
     //create a method to change user input
     handleChange = (e) => {
         this.setState({
@@ -28,6 +39,7 @@ class App extends React.Component{
             price: this.state.price,
             description: this.state.description
         };
+
         //add new items to our data array
         this.setState({
             data: [newItem, ...this.state.data]
@@ -72,6 +84,7 @@ class App extends React.Component{
                 </div>
                 {/*this.state.data[0].name*/}
                 {dataList}
+                <ProductList />
             </div>
         );
     };
