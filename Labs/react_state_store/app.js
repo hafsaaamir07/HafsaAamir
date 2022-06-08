@@ -11,7 +11,9 @@ class ProductList extends React.Component{
     };
     render(){
         return (
-            <li onClick={this.handleCartToggle}>
+            <li onClick={() => {
+                return this.props.handleShoppingCart(this.props.element);
+            }}>
                 {this.props.element.name}{" "}
                 {this.state.inShoppingCart ? <span>In Shopping cart</span> : null}
             </li>
@@ -30,6 +32,7 @@ class App extends React.Component{
         price: 0,
         description: "Describe this item",
         isHiring: true,
+        caer: []
     };
 
     //create a method to change user input
@@ -62,12 +65,19 @@ class App extends React.Component{
             isHiring: !this.state.isHiring,
         });
     };
-    
+    // Step 1. create a method in App component that keeps a handle inside Product List component 
+    handleShoppingCart = (item) => {
+        this.setState({
+            cart: [item, ...this.state.cart],
+        })
+
+    }
     render (){
         const dataList = this.state.data.map((element) => {
             return(
                 <ul className="products">
-                     <ProductList element={element} />
+                     {/*Step 2. hook our handle to our product list */}
+                     <ProductList element={element} handleShoppingCart={this.handleShoppingCart} />
                 </ul>
             );
         });
