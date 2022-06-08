@@ -1,25 +1,20 @@
 //create class component
+
 class ProductList extends React.Component{
     state = {
         inShoppingCart: false,
     };
-    //create a function to toggle the state of our shopping cart
     handleCartToggle = () => {
-
-    }
+        this.setState({
+            inShoppingCart: !this.state.inShoppingCart
+        });
+    };
     render(){
-        //render the product list
-            const productList = this.props.data.map((element) => {
-                return(
-                    <li onclick={this.state.handleCartToggle}>
-                        {element.name} {element.price}
-                    </li>
-                );
-            });
-        return(
-            <div>
-                {productList}
-            </div>
+        return (
+            <li onClick={this.handleCartToggle}>
+                {this.props.element.name}{" "}
+                {this.state.inShoppingCart ? <span>In Shopping cart</span> : null}
+            </li>
         );
     };
 };
@@ -72,7 +67,7 @@ class App extends React.Component{
         const dataList = this.state.data.map((element) => {
             return(
                 <ul>
-                    <li>{element.name} {element.price}</li>
+                     <ProductList element={element} />
                 </ul>
             );
         });
@@ -97,9 +92,7 @@ class App extends React.Component{
                     <h4>{this.state.price}</h4>
                     <h5>{this.state.description}</h5>
                 </div>
-                {/*this.state.data[0].name*/}
-                {/*dataList*/}
-                <ProductList data={data} />
+                {dataList}
             </div>
         );
     };
