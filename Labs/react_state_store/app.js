@@ -1,21 +1,28 @@
 //create class component
 class ProductList extends React.Component{
+    state = {
+        inShoppingCart: false,
+    };
+    //create a function to toggle the state of our shopping cart
+    handleCartToggle = () => {
+
+    }
     render(){
         //render the product list
             const productList = this.props.data.map((element) => {
                 return(
-                    <li>
+                    <li onclick={this.state.handleCartToggle}>
                         {element.name} {element.price}
                     </li>
-                )
-            })
+                );
+            });
         return(
             <div>
                 {productList}
             </div>
-        )
-    }
-}
+        );
+    };
+};
 
 //create class component to render data to the screen
 class App extends React.Component{
@@ -91,7 +98,7 @@ class App extends React.Component{
                     <h5>{this.state.description}</h5>
                 </div>
                 {/*this.state.data[0].name*/}
-                {dataList}
+                {/*dataList*/}
                 <ProductList data={data} />
             </div>
         );
