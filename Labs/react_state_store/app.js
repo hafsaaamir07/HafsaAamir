@@ -1,9 +1,28 @@
-//create class component
+//create a total component to sum up items inside shopping cart
 
+
+
+//create the shopping list component to recieve the data from the cart
+class ShoppingList extends React.Component{
+    render(){
+        const cartItems = this.props.cart.map((element) => {
+            return (
+                <li>{element.name}{" "}{element.price}</li>
+            );
+        });
+        return(
+            <ul>{cartItems}</ul>
+        );
+    };
+};
+
+
+//create class component
 class ProductList extends React.Component{
     state = {
         inShoppingCart: false,
     };
+    //create a function to toggle the state of our shopping cart
     handleCartToggle = () => {
         this.setState({
             inShoppingCart: !this.state.inShoppingCart
@@ -14,7 +33,7 @@ class ProductList extends React.Component{
             <li onClick={() => {
                 return this.props.handleShoppingCart(this.props.element);
             }}>
-                {this.props.element.name}{" "}
+                {this.props.element.name}{" "} {this.props.element.price}
                 {this.state.inShoppingCart ? <span>In Shopping cart</span> : null}
             </li>
         );
@@ -32,7 +51,7 @@ class App extends React.Component{
         price: 0,
         description: "Describe this item",
         isHiring: true,
-        caer: []
+        cart: []
     };
 
     //create a method to change user input
@@ -55,12 +74,12 @@ class App extends React.Component{
 
         //add new items to our data array
         this.setState({
-            data: [newItem, ...this.state.data]
-        })
+            data: [newItem, this.state.data]
+        });
     };
 
     //create a function to toggle the value of our hiring state
-    handleToggle = () => {
+    handleToggleHiring = () => {
         this.setState({
             isHiring: !this.state.isHiring,
         });
@@ -69,9 +88,8 @@ class App extends React.Component{
     handleShoppingCart = (item) => {
         this.setState({
             cart: [item, ...this.state.cart],
-        })
-
-    }
+        });
+    };
     render (){
         const dataList = this.state.data.map((element) => {
             return(
@@ -105,6 +123,7 @@ class App extends React.Component{
                 {dataList}
                 <div className="cart">
                     <h3>Shopping Cart</h3>
+                    <ShoppingList cart={this.state.cart} />
                     <ul></ul>
                 </div>
             </div>
