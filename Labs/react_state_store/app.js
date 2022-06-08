@@ -6,7 +6,7 @@ class Total extends React.Component{
         }, 0)
         return(
             <div>
-                <h4>Total: {Math.round(total)}</h4>
+                <h4>Total:{Math.round(total)}</h4>
             </div>
         );
     };
