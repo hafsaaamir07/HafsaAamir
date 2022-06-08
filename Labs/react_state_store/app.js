@@ -33,6 +33,13 @@ class App extends React.Component{
             data: [newItem, ...this.state.data]
         })
     };
+
+    //create a function to toggle the value of our hiring state
+    handleToggle = () => {
+        this.setState({
+            isHiring: !this.state.isHiring,
+        });
+    };
     
     render (){
         const dataList = this.state.data.map((element) => {
@@ -46,6 +53,7 @@ class App extends React.Component{
             <div>
                 <h1>Big Time Shopping</h1>
                 <h2>{this.state.isHiring ? <h2>Yes we are hiring!</h2>: <h2>Sorry try again tommorow</h2>}</h2>
+                <button onClick={this.handleToggle}>Toggle Hiring</button><br></br>
                 <form onSubmit={this.handleFormSubmit}> 
                     <label htmlFor="name">Name: </label>
                     <input id="name" type="text" value={this.state.name} onChange={this.handleChange}/><br></br><br></br>
