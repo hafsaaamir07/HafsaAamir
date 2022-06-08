@@ -16,6 +16,11 @@ class App extends React.Component{
             [e.target.id]: e.target.value,
         })
     }
+
+    //create a method to submit form
+    handleFormSubmit = () => {
+        e.preventDefault();
+    }
     
     render (){
         const dataList = data.map((element) => {
@@ -28,7 +33,7 @@ class App extends React.Component{
         return (
             <div>
                 <h1>Big Time Shopping</h1>
-                <form>
+                <form onSubmit={this.handleFormSubmit}> 
                     <label htmlFor="name">Name: </label>
                     <input id="name" type="text" value={this.state.name} onChange={this.handleChange}/><br></br>
                     <label htmlFor="price">Price: </label>
