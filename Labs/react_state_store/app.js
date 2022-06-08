@@ -8,12 +8,12 @@ class App extends React.Component{
         value: "",
         name: "",
         price: 0,
-        description: "Bescribe this item"
+        description: "Describe this item"
     };
     //create a method to change user input
     handleChange = (e) => {
         this.setState({
-            value: e.target.value,
+            [e.target.id]: e.target.value,
         })
     }
     
@@ -29,8 +29,16 @@ class App extends React.Component{
             <div>
                 <h1>Big Time Shopping</h1>
                 <form>
-                    <input type="text" value={this.state.value} onChange={this.handleChange}/>
+                    <label htmlFor="name">Name: </label>
+                    <input id="name" type="text" value={this.state.name} onChange={this.handleChange}/><br></br>
+                    <label htmlFor="price">Price: </label>
+                    <input id="price" type="text" value={this.state.price} onChange={this.handleChange}/><br></br>
+                    <label htmlFor="description">Description: </label>
+                    <input id="description" type="text" value={this.state.description} onChange={this.handleChange}/>
                 </form>
+                <div>
+
+                </div>
                 {/*this.state.data[0].name*/}
                 {dataList}
             </div>
