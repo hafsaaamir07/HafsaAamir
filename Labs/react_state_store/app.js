@@ -34,10 +34,15 @@ class App extends React.Component{
                     <label htmlFor="price">Price: </label>
                     <input id="price" type="text" value={this.state.price} onChange={this.handleChange}/><br></br>
                     <label htmlFor="description">Description: </label>
-                    <input id="description" type="text" value={this.state.description} onChange={this.handleChange}/>
+                    <input id="description" type="text" value={this.state.description} onChange={this.handleChange}/><br></br>
+                    <br></br>
+                    <input type="submit"/>
                 </form>
                 <div>
-
+                    <h2>Preview our new item</h2>
+                    <h3>{this.state.name}</h3>
+                    <h4>{this.state.price}</h4>
+                    <h5>{this.state.description}</h5>
                 </div>
                 {/*this.state.data[0].name*/}
                 {dataList}
