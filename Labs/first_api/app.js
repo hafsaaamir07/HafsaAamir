@@ -21,7 +21,7 @@ app.use("/api/v1/learners", learnerRouter);
 app.all("*",(request, response, next) => {
     //create the actual error
     //creating new errors using the error class
-    const routeError = new Error("ooops! Cannot find ${request.originalUrl} on our servers...")
+    const routeErrors = new Error("ooops! Cannot find ${request.originalUrl} on our servers...")
 })
 
 
