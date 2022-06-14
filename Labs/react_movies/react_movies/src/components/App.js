@@ -38,7 +38,7 @@ class App extends React.Component{
                 })
                 .then ((data) => {
                     this.setState({
-                        searchResults: data,
+                        searchResult: data,
                     });
                 })
                 .catch((error) => {
@@ -53,13 +53,15 @@ class App extends React.Component{
             <>
             <form onSubmit={this.handleSubmit}>
               <label htmlFor='movieTitle'>Title</label>
-              <input id='movieTitle' type='text' 
+              <input 
+              id='movieTitle' 
+              type='text' 
               value={this.state.movieTitle}
-              onChange={this.handleChange}/>
-              <input type='submit'value='Find Movie Info'/>
+              onChange={this.handleChange}/>{" "}
+              <input type='submit' value='Find Movie Info'/>
             </form>
-            <a href={this.state.searchURL}>{this.state.searchURL}</a>
-            <MovieInfo searchResults={this.state.searchResults} />
+            {/*if there is a serach result then pass in the movie component else an empty string*/}
+            {this.state.searchResult ? (<MovieInfo searchResult={this.state.searchResult}/>) : ("")}
           </>
         );
     };
