@@ -15,11 +15,13 @@ class App extends React.Component{
         searchURL: ''
     };
     //methods
+    // handles input bar
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value,
         });
     };
+    //submit form after we enter name of movie
     handleSubmit = (event) =>{
         event.preventDefault()
         this.setState({
@@ -35,7 +37,9 @@ class App extends React.Component{
                     return response.json();
                 })
                 .then ((data) => {
-                    console.log(data)
+                    this.setState({
+                        searchResults: data,
+                    });
                 })
                 .catch((error) => {
                     console.error(error.message)
@@ -55,7 +59,7 @@ class App extends React.Component{
               <input type='submit'value='Find Movie Info'/>
             </form>
             <a href={this.state.searchURL}>{this.state.searchURL}</a>
-            <MovieInfo />
+            <MovieInfo searchResults={this.state.searchResults} />
           </>
         );
     };
