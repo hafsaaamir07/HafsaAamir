@@ -1,3 +1,5 @@
+                                                                        /*route controllers*/
+
  //import model to create courses
  const Courses = require("./../models/courseModel") 
 
@@ -16,15 +18,13 @@
     else{
         res.redirect("/admin/courses/login")
     }
-
  }
-                                              /*route controllers*/
+
 // this is to retrieve all the courses at once
  exports.getAllCourses = async (req,res) => {
      try {
         const courses = await Courses.find();
            res.render("index", {courseList: courses})
-    
     }
     catch(error){
         res.status(500).json({
@@ -38,8 +38,7 @@
 exports.showCourse = async (req,res) => {
     try{
         const singleCourse = await Courses.findById(req.params.id)
-        res.render("show", {course: singleCourse})
-        
+        res.render("show", {course: singleCourse})  
     }
     catch(error){
         res.status(500).json({
@@ -47,7 +46,6 @@ exports.showCourse = async (req,res) => {
             message: error,
         })
     }
-    
 }
 
 //this initiate a form request to create a new course
@@ -62,6 +60,7 @@ exports.newCourse = (req,res) => {
         })
     }
 }
+
 //this is to create a a new course
  exports.createCourse = async (req,res) => {
      try{
@@ -75,6 +74,7 @@ exports.newCourse = (req,res) => {
         })
     }
 }
+
 //this is to edit a single course
 exports.editCourse = async (req,res) => {
     try{
@@ -92,7 +92,7 @@ exports.editCourse = async (req,res) => {
 //this initiates a form request to update a single course
  exports.updateCourse = async (req,res) => {
      try{
-        const courseUpdate = await Courses.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        await Courses.findByIdAndUpdate(req.params.id, req.body, {new: true})
         res.redirect(`/admin/courses/${req.params.id}`)
      }
      catch(error){
@@ -102,6 +102,7 @@ exports.editCourse = async (req,res) => {
         })
     } 
 }
+
 //this initiates a form request to delete a single course
  exports.deleteCourse =  async (req,res) => {
      try{
