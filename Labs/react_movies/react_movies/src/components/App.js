@@ -48,7 +48,7 @@ class App extends React.Component{
                 .finally(() => {
                     this.setState({
                         movieTitle: "",
-                    })
+                    });
                 });
             }
         );
@@ -64,7 +64,7 @@ class App extends React.Component{
               type='text' 
               value={this.state.movieTitle}
               onChange={this.handleChange}/>{" "}
-              <input type='submit' value='Find Movie Info'/>
+              <input type='submit' value='Find Movie Info' disabled={!this.state.movieTitle ? true : false}/>
             </form>
             {/*if there is a serach result then pass in the movie component else an empty string*/}
             {this.state.searchResult ? (<MovieInfo searchResult={this.state.searchResult}/>) : ("")}
