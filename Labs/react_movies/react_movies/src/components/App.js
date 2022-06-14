@@ -44,6 +44,12 @@ class App extends React.Component{
                 .catch((error) => {
                     console.error(error.message)
                 })
+                //this runs no matter what (wether you get data or not)
+                .finally(() => {
+                    this.setState({
+                        movieTitle: "",
+                    })
+                });
             }
         );
     };
