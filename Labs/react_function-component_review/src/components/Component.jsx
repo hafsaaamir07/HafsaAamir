@@ -11,7 +11,7 @@ const Component = () => {
     //create a list of dogs
     const dogList = dogs.map((dog) => {
         return (
-            <div>
+            <div style={{backgroundColor : "lightblue"}}>
                 <h1>{dog.name}</h1>
                 <h2>{dog.age}</h2>
             </div>
