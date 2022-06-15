@@ -2,7 +2,7 @@
 import React from "react"
 
 // 2. additional imports
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // 3. create component
 const Counter = () => {
@@ -13,8 +13,14 @@ const Counter = () => {
     //second piece of state
     const [evenCounter ,setEveneCounter] = useState(0);
 
-    ///lets log something inside our console
-    console.log("Iam just a random log");
+    /*Lets create an effct to render our component
+    everytime our evenCounter state chnages */
+    useEffect(() => {
+        //lets log something inside our console
+        console.log("Iam just a random log");
+    },[evenCounter]) 
+    // want to run this when evenCounter shows up on the screen and when evenCounter changes
+
 
     //lets create a function to add one to our counter
     const handleAddOne = () => {
@@ -34,5 +40,24 @@ const Counter = () => {
     );
 };
 
-// 4. export component
+/*useEffect
+1. By passing nothing as a second parameter of useEffect
+useEffect (() => {
+    Do somethinh here
+}) //will fire anytime anything on the screen changes
+
+2. By passing an empty array as a second parameter
+useEffect(() => {
+    Do something here
+}, []) // fire only the first time component shows up on screen
+
+3. By passing an array with data inside of it
+useEffect(() => {
+    Do something here
+},[data] ) // fire the first time it shows on the screena nd every time data chnages
+
+*/
+
+
+//4. export component
 export default Counter;
