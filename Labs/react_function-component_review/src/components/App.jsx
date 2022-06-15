@@ -2,8 +2,8 @@
 import React from "react";
 
 // 2. additional import 
-
 import Child from "./Child";
+import Component from "./Component";
 
 // 3. create functional component
 const App = () => {
@@ -21,6 +21,7 @@ const App = () => {
             number={767}
             greetings={"Hello World"}
             setVaribale={setVaribale} />
+            <Component />
         </div>
     );
 };
