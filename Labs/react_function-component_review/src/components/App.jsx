@@ -17,7 +17,10 @@ const App = () => {
     return(
         <div style={{backgroundColor: "lightcoral"}}>
             <h1>App Component</h1>
-            <Child setVaribale={setVaribale} />
+            <Child 
+            number={767}
+            greetings={"Hello World"}
+            setVaribale={setVaribale} />
         </div>
     );
 };
