@@ -3,11 +3,12 @@ import React from "react";
 
 // 2. additional import 
 
+import Child from "./Child";
 
 // 3. create functional component
 const App = () => {
     //lets create a varaible 
-    let varaible;
+    let variable;
 
     //lets create a function 
     const setVaribale = (data) => {
