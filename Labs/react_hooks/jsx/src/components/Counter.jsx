@@ -9,9 +9,14 @@ const Counter = () => {
 
     // lets declare a new  state inside of our application
     const [counter ,setCounter] = useState(0);
+    //lets create a function to add one to our counter
+    const handleAddOne = () => {
+        setCounter(counter + 1);
+    }
     return(
         <div>
-            <h1>Counter Component</h1>
+            <h1>{counter}</h1>
+            <button onClick={handleAddOne}>Click Me to Add One</button>
         </div>
     );
 };
