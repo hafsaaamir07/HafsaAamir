@@ -33,8 +33,9 @@ const Counter = () => {
     }
     return(
         <div>
-            <h1>Counter: {counter}</h1>
-            <h1>Even Counter: {evenCounter}</h1>
+            <h1>Counter Component</h1>
+            <h2>Counter: {counter}</h2>
+            <h2>Even Counter: {evenCounter}</h2>
             <button onClick={handleAddOne}>Click Me to Add One</button>
         </div>
     );
@@ -44,17 +45,18 @@ const Counter = () => {
 1. By passing nothing as a second parameter of useEffect
 useEffect (() => {
     Do somethinh here
-}) //will fire anytime anything on the screen changes
+}) //will fire anytime anything on the screen/code changes with no dependency array
 
 2. By passing an empty array as a second parameter
 useEffect(() => {
     Do something here
-}, []) // fire only the first time component shows up on screen
+}, []) // fire only the first time component loads on the page/shows up on screen
 
 3. By passing an array with data inside of it
 useEffect(() => {
     Do something here
-},[data] ) // fire the first time it shows on the screena nd every time data chnages
+},[data] ) // fire the first time component loads on the page
+and every time when the data changes 
 
 */
 
