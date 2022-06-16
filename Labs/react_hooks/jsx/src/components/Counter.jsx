@@ -41,7 +41,8 @@ const Counter = () => {
     );
 };
 
-/*useEffect
+/*useEffect: allows you more control over HOW and WHEN your component updates.
+
 1. By passing nothing as a second parameter of useEffect
 useEffect (() => {
     Do somethinh here
