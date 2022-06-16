@@ -11,7 +11,7 @@ const Counter = () => {
     const [counter ,setCounter] = useState(0);
 
     //second piece of state
-    const [evenCounter ,setEveneCounter] = useState(0);
+    const [evenCounter ,setEvenCounter] = useState(0);
 
     /*Lets create an effct to render our component
     everytime our evenCounter state chnages */
@@ -25,7 +25,7 @@ const Counter = () => {
     //lets create a function to add one to our counter
     const handleAddOne = () => {
         if (counter %2 === 0){
-            setEveneCounter(evenCounter + 1)
+            setEvenCounter(evenCounter + 1)
         }
         
         //if counter not even update counter
