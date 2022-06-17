@@ -5,6 +5,7 @@ import React from "react";
 import Counter from "./Counter";
 import FormComponent from "./FormComponent";
 import FormControlled from "./FormControlled";
+import FormUncontrolled from "./FormUncontrolled";
 
 // 3.create component
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
             <Counter />
             <FormComponent />
             <FormControlled />
+            <FormUncontrolled />
         </div>
     );
 };
