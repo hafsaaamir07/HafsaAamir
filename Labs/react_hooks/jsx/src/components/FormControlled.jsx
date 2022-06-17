@@ -23,10 +23,16 @@ const FormControlled = () => {
             whatever name is in the form that is the current target*/
         })
     }
+
+    //create a function responsible for submitting our form
+    const handleFormSubmit = (e) => {
+        //prevents form from reloading
+        e.preventDefault();
+    }
     return(
         <div>
             <h1 style={{color: "lightcoral"}}>Form Controlled</h1>
-            <form>
+            <form onSubmit={handleFormSubmit}>
                 <input
                     type="text"
                     name="name"
