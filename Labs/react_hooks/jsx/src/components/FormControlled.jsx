@@ -50,7 +50,7 @@ const FormControlled = () => {
                         return handleChange(e)
                     }}
                     value={formState.age}
-                />
+                /> {" "}
                 <input type="submit" value="Submit Form" />
             </form>
         </div>
