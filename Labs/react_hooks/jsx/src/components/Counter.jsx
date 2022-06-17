@@ -33,7 +33,7 @@ const Counter = () => {
     }
     return(
         <div>
-            <h1>Counter Component</h1>
+            <h1 style={{color: "lightgreen"}}>Counter Component</h1>
             <h2>Counter: {counter}</h2>
             <h2>Even Counter: {evenCounter}</h2>
             <button onClick={handleAddOne}>Click Me to Add One</button>

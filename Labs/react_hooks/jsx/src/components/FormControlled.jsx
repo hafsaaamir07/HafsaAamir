@@ -7,9 +7,9 @@ import React from "react";
 const FormControlled = () => {
     return(
         <div>
-            <h1>Form Controlled</h1>
+            <h1 style={{color: "lightcoral"}}>Form Controlled</h1>
         </div>
-    )
-}
+    );
+};
 // 4. export component
 export default FormControlled

@@ -20,6 +20,7 @@ const FormComponent = () => {
     }
     return (
         <div>
+            <h1 style={{color: "lightsteelblue"}}>Form Component</h1>
             <input type="text" ref={inputRef}/>
             <p ref={pTagRef}>This is a p tag</p>
             <button onClick={handleClick}>Click me</button>
