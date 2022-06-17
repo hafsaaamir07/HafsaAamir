@@ -58,3 +58,14 @@ const FormControlled = () => {
 };
 // 4. export component
 export default FormControlled
+
+/* ...formState, [e.target.name] : e.target.value
+-> we spread fisrt because we want the input values we are typing to replace the empty string in the object
+ex: ...formState, [e.target.name] : e.target.value -> name: "", age: 0, name: "hafsa", age: 23
+here the empty name and age will get replced by the later values which is the input values typed
+
+-> if we spread at the end then the empty values in the object will replace the input values from the form
+ex: [e.target.name] : e.target.value , ...formState -> name: "hafsa", age: 23, name: "", age: 0,
+here the input values from the form will be replaced by the empty values
+
+*/
