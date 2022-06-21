@@ -3,13 +3,12 @@ import React from "react";
 
 // 2. additional import
 import Child from "./Child";
-import Grandchild from "./GrandChild";
 
 // 3. create component
 const Parent = () => {
     return (
         <div>
-            <Child />
+            <Child cheese="gouda"/>
         </div>
     );
 };
@@ -19,3 +18,5 @@ export default Parent;
 
 //prop drilling is when the parent passes data from the child who then
 //passes data to the grandchild (child's child)
+
+//parent is rendering the child -> child is rendering the grandchild
