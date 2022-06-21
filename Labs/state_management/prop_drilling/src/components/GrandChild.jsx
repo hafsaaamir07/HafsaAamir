@@ -4,15 +4,15 @@ import React from "react";
 // 2. additional import
 
 // 3. create component
-const Grandchild= (props) => {
+const GrandChild= (props) => {
     console.log(props)
     return (
         <div>
-            <h1>Grandchild Component</h1>
+            <h1>GrandChild Component</h1>
             <h2>{props.cheese}</h2>
         </div>
     );
 };
 
 // 4. export component
-export default Grandchild;
+export default GrandChild;
