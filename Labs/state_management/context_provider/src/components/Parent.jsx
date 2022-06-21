@@ -11,10 +11,14 @@
 
  //instead of passing from the parent to the child and then to grandchild
  //wee want to use context provider to go from parent to grandchild
+ 
  const Grandchild = () => {
+    //lets retrieve our conetxt
+    const ctx = useContext(conetxt);
     return (
         <div>
             <h1>Grandchild Component</h1>
+            <h2>{ctx}</h2>
         </div>
     );
  };
@@ -30,6 +34,8 @@
  const Parent = () => {
     return (
         <div>
+            {/*you wrap conetxt on whose child needs the data 
+            no the component that needs data but the parent of that child */}
             <context.Provider value={"cheese"}>
                 <Child />
             </context.Provider>
