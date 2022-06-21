@@ -2,6 +2,12 @@
  import React from "react";
 
  // 2. additional imports 
+ import { createContext } from "react";
+ import { useContext } from "react";
+
+ //create our context provider
+ const context = createContext(null); //when react loads our app its null
+ 
 
  //instead of passing from the parent to the child and then to grandchild
  //wee want to use context provider to go from parent to grandchild
@@ -24,7 +30,9 @@
  const Parent = () => {
     return (
         <div>
-            <Child />
+            <context.Provider value={"cheese"}>
+                <Child />
+            </context.Provider>
         </div>
     );
  };
