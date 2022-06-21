@@ -12,8 +12,8 @@ const Parent = () => {
     const [state, setState] = useState("Hello")
 
     //lets create a function to update our state
-    const updateState = () => {
-        console.log("I am a function");
+    const updateState = (data) => {
+        setState(data)
     }
     return (
         <div>
