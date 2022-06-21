@@ -9,10 +9,15 @@ import { useState } from "react";
 // 3. create component 
 const Parent = () => {
     //create a piece of state
-    const [state, setState] = useState("Helllo")
+    const [state, setState] = useState("Hello")
+
+    //lets create a function to update our state
+    const updateState = () => {
+        console.log("I am a function");
+    }
     return (
         <div>
-            <SenderChild />
+            <SenderChild updateState={updateState}/>
             <ReceieverChild state={state}/>
         </div>
     )
