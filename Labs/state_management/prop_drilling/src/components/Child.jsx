@@ -5,10 +5,11 @@ import React from "react";
 import Grandchild from "./GrandChild";
 
 // 3. create component
-const Child= () => {
+const Child= (props) => {
+    console.log("props");
     return (
         <div>
-           <Grandchild />
+           <Grandchild cheese={props.cheese}/>
         </div>
     );
 };
