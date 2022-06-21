@@ -4,10 +4,12 @@ import React from "react";
 // 2. additional import
 
 // 3. create component
-const Grandchild= () => {
+const Grandchild= (props) => {
+    console.log(props)
     return (
         <div>
             <h1>Grandchild Component</h1>
+            <h2>{props.cheese}</h2>
         </div>
     );
 };
