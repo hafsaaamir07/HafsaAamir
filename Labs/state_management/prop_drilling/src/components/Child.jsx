@@ -2,14 +2,14 @@
 import React from "react";
 
 // 2. additional import
-import Grandchild from "./GrandChild";
+import GrandChild from "./GrandChild";
 
 // 3. create component
 const Child= (props) => {
     console.log("props");
     return (
         <div>
-           <Grandchild cheese={props.cheese}/>
+           <GrandChild cheese={props.cheese}/>
         </div>
     );
 };
