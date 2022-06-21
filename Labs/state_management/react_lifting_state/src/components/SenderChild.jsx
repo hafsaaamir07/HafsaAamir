@@ -8,7 +8,9 @@ const SenderChild = (props) => {
     return (
         <div>
             <h1 style={{color: "lightseagreen"}}>Sender Component</h1>
-            <button onClick={props.updateState}>Click Me</button>
+            <button onClick={() => {
+                return props.updateState("GoodBye!")
+                }}>Click Me</button>
             <hr></hr>
         </div>
     );
