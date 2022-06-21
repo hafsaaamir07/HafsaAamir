@@ -4,11 +4,12 @@ import React from "react";
 // 2. additional imports 
 
 // 3. create component 
-const SenderChild = () => {
-    //create a piece of state
+const SenderChild = (props) => {
     return (
         <div>
-            <h1>Sender Component</h1>
+            <h1 style={{color: "lightseagreen"}}>Sender Component</h1>
+            <button onClick={props.updateState}>Click Me</button>
+            <hr></hr>
         </div>
     );
 };
