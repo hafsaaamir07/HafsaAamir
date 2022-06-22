@@ -2,12 +2,21 @@ import React, { useState } from 'react'
 
 import PreviewItem from './PreviewItem';
 
-const Form= () => {
+const Form= (props) => {
     const [formData, setFormData] = useState({
         name: "",
         price:"",
         description: ""
     })
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        const newItem = {
+            name: formData.name,
+            price: formData.price,
+            description: formData.description
+        };
+        props.setData([newItem, ...props.data])
+    }
     //useSate does not automatically merge and update the state so we have to
     //ue the spread operator --> meaning that when you type in one input box
     // and then move to another the text will disappear with use state so thats where
@@ -52,7 +61,7 @@ const Form= () => {
                 />
                 <br />
                 <br />
-                <input type="submit" />
+                <input type="submit" onClick={(e)=> {handleFormSubmit(e)}}/>
             </form>
             <PreviewItem formData={formData}/>
         </div>
