@@ -18,7 +18,7 @@ const ShoppingList = () => {
     
     return (
         <div>
-            <Form/>
+            <Form data={data} setData={setData}/>
             <h1>Big Time Shopping</h1>
             {cartItems}
         </div>
