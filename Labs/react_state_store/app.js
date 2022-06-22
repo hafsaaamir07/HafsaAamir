@@ -88,7 +88,7 @@ class App extends React.Component{
 
         //add new items to our data array
         this.setState({
-            data: [newItem, this.state.data]
+            data: [newItem, ...this.state.data]
         });
     };
 
