@@ -15,7 +15,8 @@ const App = () => {
     return (
         <div>
             <div className="ui container" style={{marginTop: "30px"}}>
-                <Navigation />
+            <Navigation />
+                {/* 
                 <Route path="/home">
                     <Home homeData="this is data for the home page"/>
                 </Route>
@@ -24,7 +25,13 @@ const App = () => {
                 </Route>
                 <Route path="/projects">
                     <Projects />
-                </Route>
+                </Route> */}
+
+                {/*This router lets us access the router props but we can not pass in
+                custom props for the components */}
+                <Route path="/home" component={Home}/>
+                <Route path="/about" component={About}/>
+                <Route path="/projects" component={Projects}/>
             </div>
         </div>
     );
