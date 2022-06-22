@@ -10,13 +10,13 @@ import Projects from "./Projects";
 
 // 3. create component 
 const App = () => {
-    // we do not get acess to router props
-    // but can pass in props to the components
+    
     return (
         <div>
             <div className="ui container" style={{marginTop: "30px"}}>
             <Navigation />
-                {/* 
+                {/* 1st syntax: we do not get acess to router props but can pass in 
+                props to the components               
                 <Route path="/home">
                     <Home homeData="this is data for the home page"/>
                 </Route>
@@ -27,11 +27,21 @@ const App = () => {
                     <Projects />
                 </Route> */}
 
-                {/*This router lets us access the router props but we can not pass in
-                custom props for the components */}
+                {/*2nd synatx: This router lets us access the router props but we can not pass in
+                custom props for the components 
                 <Route path="/home" component={Home}/>
                 <Route path="/about" component={About}/>
                 <Route path="/projects" component={Projects}/>
+                */}
+        
+                <Route path="/home" render={(routerProps) => { 
+                    return <Home {...routerProps} homeData="This is data for home component"/>
+                    }}/>
+                <Route path="/about" render={() => { return <About/>}}/>
+                <Route path="/projects" render={() => { return <Projects/>}}/>
+                
+
+
             </div>
         </div>
     );
