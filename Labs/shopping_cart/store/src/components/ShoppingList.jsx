@@ -4,6 +4,7 @@ import React from "react";
 // 2. additional imports
 import Data from "./Data";
 import { useState } from "react";
+import Form from "./Form";
 
 // 3. create component 
 const ShoppingList = () => {
@@ -17,6 +18,7 @@ const ShoppingList = () => {
     
     return (
         <div>
+            <Form/>
             <h1>Big Time Shopping</h1>
             {cartItems}
         </div>
