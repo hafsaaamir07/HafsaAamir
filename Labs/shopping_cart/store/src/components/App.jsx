@@ -4,6 +4,7 @@ import React, { useState } from "react";
 // 2. additional imports
 import ShoppingList from "./ShoppingList";
 
+
 // 3. create components
 const App = () => {
     return (
