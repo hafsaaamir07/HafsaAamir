@@ -11,9 +11,19 @@ const Navigation = (props) => {
 
         <div className="ui secondary pointing menu">
             {/*the actice class is the one with the line under indicating this is the page clicked */}
-            <Link className="active item" to="/"> Home </Link>
-            <Link className="item" to="/about"> About </Link>
-            <Link className="item" to="/projects"> Projects </Link>
+            {/*this is saying if my location pathname is is just forward slash then add the active 
+            class to that component */}
+            <Link className={`item ${props.location.pathname === "/" ? "active" : ""}`} 
+                to="/"> Home 
+            </Link>
+
+            <Link className={`item ${props.location.pathname === "/about" ? "active" : ""}`} 
+                to="/about"> About 
+            </Link>
+
+            <Link className={`item ${props.location.pathname === "/projects" ? "active" : ""}`} 
+                to="/projects"> Projects 
+            </Link>
             <div className="right menu">
                 <Link className="ui item" to="/logout"> Logout </Link>
             </div>
