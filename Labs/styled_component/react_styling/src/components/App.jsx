@@ -13,7 +13,7 @@ const App = () => {
                     <Greeting />
                 </Title>
             </Component>
-            <IsEven />
+            <IsEven number={12}/>
         </div>
     );
 };
