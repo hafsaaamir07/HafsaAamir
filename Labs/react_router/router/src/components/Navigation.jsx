@@ -25,6 +25,10 @@ const Navigation = (props) => {
                 to="/projects"> Projects 
             </Link>
 
+            <Link className={`item ${props.location.pathname === "/detail" ? "active" : ""}`} 
+                to="/detail"> Detail
+            </Link>
+
             <div className="right menu">
                 <Link className={`ui item ${props.location.pathname === "/logout" ? "active" : ""}`} 
                     to="/logout"> Logout 
