@@ -13,7 +13,8 @@ const App = () => {
     return (
         <div>
             <div className="ui container" style={{marginTop: "30px"}}>
-            <Navigation />
+            {/*to get acess to router props we need to wrap the navigation in a route tag */}
+                <Route component={Navigation}/>
                 {/* 1st syntax: we do not get acess to router props but can pass in 
                 props to the components               
                 <Route path="/home">
