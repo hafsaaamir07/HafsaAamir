@@ -7,7 +7,7 @@ const Users = () => {
     //lets create a variable to hold our application
     /*initial state will be ana empty array because before
     we make our api call its going to empty */
-    const [users, setUsers] = useState()
+    const [users, setUsers] = useState([])
 
     //lets create our effect
     // we can make api directly in our useEffect we need an helper function to do so
@@ -18,13 +18,15 @@ const Users = () => {
         
         //retrieving the data from the response object
         const data = response.data;
-        console.log(data)
+        setUsers(data);
        }
        helperFunction();
     });
     return (
         <div>
             <h1>Users Component</h1>
+            {/*optional chaining*/}
+            {users[0]?.id}
         </div>
     )
 };
