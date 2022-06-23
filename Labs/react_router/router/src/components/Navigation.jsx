@@ -26,7 +26,7 @@ const Navigation = (props) => {
             </Link>
 
             <Link className={`item ${props.location.pathname === "/detail" ? "active" : ""}`} 
-                to="/detail"> Detail
+                to="/detail/"> Detail
             </Link>
 
             <div className="right menu">
