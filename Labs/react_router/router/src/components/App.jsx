@@ -51,8 +51,8 @@ const App = () => {
                     <Route exact path="/" render={(routerProps) => { 
                         return <Home {...routerProps} homeData="This is data for home component"/>
                         }}/>
-                    <Route path="/about" render={() => { return <About/>}}/>
-                    <Route path="/projects" render={() => { return <Projects/>}}/>
+                    <Route path="/about" render={(routerProps) => { return <About {...routerProps}/>}}/>
+                    <Route path="/projects" render={(routerProps) => { return <Projects {...routerProps}/>}}/>
                 </Switch>
             </div>
         </div>
