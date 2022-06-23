@@ -15,7 +15,9 @@ const Users = () => {
        // create a helper function to make api calls
        const helperFunction = async () => {
         const response = await axios.get("https://jsonplaceholder.typicode.com/users");
-        console.log(response);
+        
+        //retrieving the data from the response object
+        const adat = response.data;
        }
        helperFunction();
     });
