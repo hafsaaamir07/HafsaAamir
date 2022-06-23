@@ -7,6 +7,7 @@ import Navigation from "./Navigation";
 import Home from "./Home";
 import About from "./About";
 import Projects from "./Projects";
+import Detail from "./Detail";
 
 // 3. create component 
 const App = () => {
@@ -53,6 +54,7 @@ const App = () => {
                         }}/>
                     <Route path="/about" render={(routerProps) => { return <About {...routerProps}/>}}/>
                     <Route path="/projects" render={(routerProps) => { return <Projects {...routerProps}/>}}/>
+                    <Route path="/detail/:id" render={(routerProps) => { return <Detail {...routerProps}/>}}/>
                 </Switch>
             </div>
         </div>
