@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import axios from "axios";
 
 const Users = () => {
     //lets create a variable to hold our application
@@ -8,15 +9,21 @@ const Users = () => {
     we make our api call its going to empty */
     const [users, setUsers] = useState()
 
-    //lets craete our effect
+    //lets create our effect
+    // we can make api directly in our useEffect we need an helper function to do so
     useEffect (() => {
-        return(
-            <div>
-                <h1>Users Component</h1>
-            </div>
-        )
-
+       // create a helper function to make api calls
+       const helperFunction = async () => {
+        const response = await axios.get("https://jsonplaceholder.typicode.com/users");
+        console.log(response);
+       }
+       helperFunction();
     });
+    return (
+        <div>
+            <h1>Users Component</h1>
+        </div>
+    )
 };
 
 export default Users;
