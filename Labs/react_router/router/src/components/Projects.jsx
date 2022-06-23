@@ -1,6 +1,7 @@
 import React from "react";
 
-const Projects = () => {
+const Projects = (props) => {
+    console.log(props);
     return(
         <div>
             <h1>Projects Component</h1>
