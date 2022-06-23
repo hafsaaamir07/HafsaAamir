@@ -17,7 +17,8 @@ const Users = () => {
         const response = await axios.get("https://jsonplaceholder.typicode.com/users");
         
         //retrieving the data from the response object
-        const adat = response.data;
+        const data = response.data;
+        console.log(data)
        }
        helperFunction();
     });
