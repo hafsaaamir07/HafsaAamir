@@ -8,9 +8,10 @@ import { useState } from "react";
 
 // 3. create component
 const Parent = () => {
+    const [state = setState] = useState(0);
     return (
         <div>
-            <StateContext.Provider>
+            <StateContext.Provider value={{state, setState}}>
                 <Child/>
             </StateContext.Provider>
         </div>
