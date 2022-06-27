@@ -8,7 +8,7 @@ import { useState } from "react";
 
 // 3. create component
 const Parent = () => {
-    const [state = setState] = useState(0);
+    const [state , setState] = useState(0);
     return (
         <div>
             <StateContext.Provider value={{state, setState}}>
