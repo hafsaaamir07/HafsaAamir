@@ -2,12 +2,13 @@
 import React from "react";
 
 // 2. additional imports
+import GrandChild from "./GrandChild";
 
 // 3. create component
 const Child = () => {
     return (
         <div>
-            <h1>Parent Component</h1>
+            <GrandChild />
         </div>
     )
 }
