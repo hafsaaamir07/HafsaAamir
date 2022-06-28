@@ -25,12 +25,22 @@ const Parent = () => {
 
     };
 
+    //proviede an initial state to our store
+    const initialState = 0;
+
+    // lets create our state and our dispatch 
+    /*every single reducer you create comes with 2 parameters
+    1) dispatch: it takes your action and dispatches to every single reducer until
+    we find the reducer that matches the action type
+    2) getState:   */
+    const [state , dispatch] = useReducer(reducer, initialState);
+
 
     //lets create our state
-    const [state , setState] = useState(0);
+    //const [state , setState] = useState(0);
     return (
         <div>
-            <StateContext.Provider value={{state, setState}}>
+            <StateContext.Provider value={{state, dispatch}}>
                 <Child/>
             </StateContext.Provider>
         </div>
