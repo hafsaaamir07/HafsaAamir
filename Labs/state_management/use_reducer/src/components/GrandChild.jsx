@@ -11,7 +11,7 @@ const GrandChild = () => {
     console.log(ctx) // state and dispatch coming from Parent component
     return (
         <div>
-            <h1></h1>
+            <h1>{ctx.state}</h1>
             <button>Add</button>
             <button>Subtract</button>
         </div>
