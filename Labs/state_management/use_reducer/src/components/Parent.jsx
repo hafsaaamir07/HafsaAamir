@@ -5,6 +5,7 @@ import React from "react";
 import Child from "./Child";
 import StateContext from "./../contexts/StateContext"
 import { useState } from "react";
+import { useReducer } from "react";
 
 // 3. create component
 const Parent = () => {
